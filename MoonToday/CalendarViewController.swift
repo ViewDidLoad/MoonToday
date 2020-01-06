@@ -8,9 +8,8 @@
 
 import UIKit
 import AVFoundation
-import GoogleMobileAds
 
-class CalendarViewController: UIViewController, GADBannerViewDelegate  {
+class CalendarViewController: UIViewController  {
     
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var titleButton: UIButton!
@@ -20,13 +19,12 @@ class CalendarViewController: UIViewController, GADBannerViewDelegate  {
     @IBOutlet weak var calendarButton: UIButton!
     @IBOutlet weak var dayButton: UIButton!
     @IBOutlet weak var animationButton: UIButton!
+    @IBOutlet weak var menuViewTopMargin: NSLayoutConstraint!
     
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var yearMonthLabel: UILabel!
     @IBOutlet weak var nextMonth: UIButton!
     @IBOutlet weak var prevMonth: UIButton!
-    
-    @IBOutlet weak var bottomView: GADBannerView!
     
     var touchPlayer:AVAudioPlayer?
     var selectDate:Date?
@@ -53,17 +51,11 @@ class CalendarViewController: UIViewController, GADBannerViewDelegate  {
             swipeGesture.direction = direct
             self.contentView.addGestureRecognizer(swipeGesture)
         }
-        // AdMob Banner 설정, 광고단위 ID를 입력해야 함
-        bottomView.adSize = kGADAdSizeBanner
-        bottomView.adUnitID = "ca-app-pub-7335522539377881/9101989973"
-        bottomView.rootViewController = self
-        bottomView.delegate = self
-        bottomView.load(GADRequest())
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        // 화면크기 여기서 코드로 조정할 것, autolayout 사용하니까 아이패드랑 큰화면에서 전부 깨짐
+        /*/ 화면크기 여기서 코드로 조정할 것, autolayout 사용하니까 아이패드랑 큰화면에서 전부 깨짐
         let delta:CGFloat = 8.0
         // topView
         let topViewHeight = UIScreen.main.bounds.size.height * 0.1
@@ -80,6 +72,7 @@ class CalendarViewController: UIViewController, GADBannerViewDelegate  {
         // contentView
         let contentViewHeight = UIScreen.main.bounds.size.height * 0.9
         contentView.frame = CGRect(x: 0, y: topViewHeight, width: UIScreen.main.bounds.size.width, height: contentViewHeight)
+        // */
         
         if isBeingPresented || isMovingToParentViewController // 제목 표시 근데 왜 두번 실행될까? 이 조건을 넣으면 한번만 실행된다.
         {
@@ -130,7 +123,7 @@ class CalendarViewController: UIViewController, GADBannerViewDelegate  {
         //print("dayCount -> \(dayCount)")
         // weekDay = 1 이면 일요일이므로 무조건 1을 빼줘야 함.
         let weekCount = ceil(CGFloat(weekDay + dayCount - 1) / 7)
-        let viewHeight:CGFloat = (contentView.frame.size.height - bottomView.bounds.size.height - (start_y + labelHeight + delta + delta)) / weekCount
+        let viewHeight:CGFloat = (contentView.frame.size.height - (start_y + labelHeight + delta + delta)) / weekCount
         //print("viewHeight -> \(viewHeight)")
         // 날짜 표시 변수 초기화
         var day = 1
@@ -190,48 +183,17 @@ class CalendarViewController: UIViewController, GADBannerViewDelegate  {
     
     @IBAction func configButtonTouch(_ sender: UIButton) {
         touchPlaySound()
-        // 메뉴뷰가 안보이면 보이도록 애니메이션으로 내려옴, 내려왔으면 올라가서 숨겨짐
-        //let menuTopConstraint = self.view.constraints.filter { $0.identifier == "menuViewTopConstraint"}.first
-        //print("configButtonTouch menuView.isHidden -> \(menuView.isHidden.description), menuViewTopConstraint : \(menuTopConstraint?.constant ?? 0.0)")
-        let duration = 0.1
-        let delay = 0.01
-        if menuView.isHidden // 메뉴 뷰가 숨겨져 있을 경우
-        {
-            DispatchQueue.main.async {
-                //menuTopConstraint?.constant = 0.0
-                //self.view.layoutIfNeeded() // constraint 변경하면 이걸 해줘야 적용이 됨
-                self.menuView.isHidden = false
-                UIView.animate(withDuration: duration, delay: delay, options: [.curveEaseIn], animations: {
-                    self.menuView.frame.origin.y = self.topView.frame.size.height
-                }, completion: { finshed in
-                    //menuTopConstraint?.constant = self.topView.frame.size.height
-                    //self.view.layoutIfNeeded()
-                })
-                UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: 0.1, initialSpringVelocity: 5, options: [.curveEaseIn], animations: {
-                    sender.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-                }, completion: { finished in
-                    sender.transform = CGAffineTransform.identity
-                    sender.setImage(UIImage(named: "btn_close"), for: .normal)
-                })
-            }
+        print("menuViewTopMargin \(menuViewTopMargin.constant), \(topView.bounds.height)")
+        menuView.isHidden = !menuView.isHidden
+        if menuView.isHidden {
+            menuViewTopMargin.constant = 0
+            menuView.isHidden = true
+        } else {
+            menuViewTopMargin.constant = topView.bounds.height
+            menuView.isHidden = false
         }
-        else // 메뉴 바가 나타나 있을 경우
-        {
-            DispatchQueue.main.async {
-                UIView.animate(withDuration: duration, delay: delay, options: [.curveEaseOut], animations: {
-                    self.menuView.frame.origin.y = self.topView.frame.origin.y
-                }, completion: { finished in
-                    //menuTopConstraint?.constant = 0.0
-                    //self.view.layoutIfNeeded()
-                    self.menuView.isHidden = true
-                })
-                UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: 0.1, initialSpringVelocity: 5, options: [.curveEaseOut], animations: {
-                    sender.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-                }, completion: { finished in
-                    sender.transform = CGAffineTransform.identity
-                    sender.setImage(UIImage(named: "btn_menu"), for: .normal)
-                })
-            }
+        UIView.animate(withDuration: 0.3) {
+            self.loadViewIfNeeded()
         }
     }
     
@@ -287,15 +249,6 @@ class CalendarViewController: UIViewController, GADBannerViewDelegate  {
             player.play()
         } catch let error {
             print(error.localizedDescription)
-        }
-    }
-    
-    // GADBannerViewDelegate
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        print("adViewDidReceivedAD")
-        bottomView.alpha = 0
-        UIView.animate(withDuration: 0.9) {
-            self.bottomView.alpha = 1.0
         }
     }
     

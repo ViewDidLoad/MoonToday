@@ -153,6 +153,7 @@
                                 <rect key="frame" x="0.0" y="667" width="375" height="216"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.01933211088" green="0.1109654829" blue="0.18050330880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="textColor">
                                         <color key="value" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -328,20 +329,6 @@
                                             <action selector="selectButtonTouch:" destination="KCp-4h-9rI" eventType="touchUpInside" id="Ygi-5d-9ZC"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SunRise : 2017.08.28 AM 05:38" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0c-qz-pOJ">
-                                        <rect key="frame" x="87" y="494" width="202" height="17"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.56078431370000004" green="0.63137254899999995" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SunSet : 2017.08.28 PM 06:38" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y6m-vy-3oF">
-                                        <rect key="frame" x="90" y="513" width="196" height="17"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.56078431370000004" green="0.63137254899999995" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.050980392159999999" green="0.15686274510000001" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -386,21 +373,12 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.036042783410000001" green="0.059036590159999999" blue="0.15609470010000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <view alpha="0.0" contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="OSH-o6-Dhu" customClass="GADBannerView">
-                                <rect key="frame" x="27.5" y="617" width="320" height="50"/>
-                                <color key="backgroundColor" red="0.036042783410000001" green="0.059036590159999999" blue="0.15609470010000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.036042783410000001" green="0.059036590159999999" blue="0.15609470010000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="OSH-o6-Dhu" firstAttribute="bottom" secondItem="tOK-pY-g9z" secondAttribute="bottom" id="TH8-z8-TYh"/>
-                            <constraint firstItem="OSH-o6-Dhu" firstAttribute="centerX" secondItem="N38-u3-YeX" secondAttribute="centerX" id="i9F-H9-VtT"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="tOK-pY-g9z"/>
                     </view>
                     <connections>
                         <outlet property="animationButton" destination="0S2-j2-JSF" id="Ub0-tZ-bE5"/>
-                        <outlet property="bottomView" destination="OSH-o6-Dhu" id="eZe-V7-lCm"/>
                         <outlet property="configButton" destination="zvN-7M-XLT" id="ImA-Hf-0fK"/>
                         <outlet property="contentView" destination="BTb-kw-kk3" id="3er-aK-0uF"/>
                         <outlet property="dateButton" destination="5A8-lz-km7" id="Rno-zC-rIn"/>
@@ -414,8 +392,6 @@
                         <outlet property="selectButton" destination="zdK-Gk-xEi" id="9mG-Ya-ieJ"/>
                         <outlet property="selectDatePicker" destination="Sk0-fP-hfu" id="mZc-hm-udP"/>
                         <outlet property="sunImageView" destination="Hsf-xP-hEa" id="k4G-ij-iw1"/>
-                        <outlet property="sunRiseLabel" destination="d0c-qz-pOJ" id="KcL-bW-3i4"/>
-                        <outlet property="sunSetLabel" destination="y6m-vy-3oF" id="1Y5-lh-Zes"/>
                         <outlet property="titleButton" destination="TCm-2g-ynz" id="aMd-eV-WPh"/>
                         <outlet property="topView" destination="Xv6-KY-bfA" id="lrj-nk-pAG"/>
                         <outlet property="universeImageView" destination="dnF-j9-lOf" id="u7g-YF-xfh"/>
@@ -433,13 +409,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uno-zw-vvN">
-                                <rect key="frame" x="0.0" y="20" width="375" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uno-zw-vvN">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="66.5"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jIj-GA-kQh">
-                                        <rect key="frame" x="129" y="15" width="117" height="39"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jIj-GA-kQh">
+                                        <rect key="frame" x="117.5" y="10" width="140" height="46.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="jIj-GA-kQh" secondAttribute="height" multiplier="3:1" id="3dI-wt-f5y"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="Moon Today">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -449,9 +426,11 @@
                                             <action selector="titleButtonTouch:" destination="Wib-fS-LWF" eventType="touchUpInside" id="6Eb-U6-DGd"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DOb-Bn-A4o">
-                                        <rect key="frame" x="332" y="17.5" width="35" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DOb-Bn-A4o">
+                                        <rect key="frame" x="327" y="13.5" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="DOb-Bn-A4o" secondAttribute="height" multiplier="1:1" id="0pD-gm-u1A"/>
+                                        </constraints>
                                         <state key="normal" image="btn_menu"/>
                                         <connections>
                                             <action selector="configButtonTouch:" destination="DZn-lz-28q" eventType="touchUpInside" id="bgp-Wh-nkx"/>
@@ -459,21 +438,29 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.036042783410000001" green="0.059036590159999999" blue="0.15609470010000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="DOb-Bn-A4o" secondAttribute="trailing" constant="8" id="Gk3-fa-b5Z"/>
+                                    <constraint firstItem="jIj-GA-kQh" firstAttribute="centerY" secondItem="uno-zw-vvN" secondAttribute="centerY" id="Unb-FV-W0y"/>
+                                    <constraint firstItem="DOb-Bn-A4o" firstAttribute="centerY" secondItem="uno-zw-vvN" secondAttribute="centerY" id="bEf-3g-P2t"/>
+                                    <constraint firstItem="jIj-GA-kQh" firstAttribute="centerX" secondItem="uno-zw-vvN" secondAttribute="centerX" id="iKX-yA-C6p"/>
+                                    <constraint firstItem="jIj-GA-kQh" firstAttribute="height" secondItem="uno-zw-vvN" secondAttribute="height" multiplier="0.7" id="qvk-lG-Psb"/>
+                                    <constraint firstItem="DOb-Bn-A4o" firstAttribute="height" secondItem="uno-zw-vvN" secondAttribute="height" multiplier="0.6" id="yo8-kL-y0D"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="65T-o4-s6P">
-                                <rect key="frame" x="0.0" y="90" width="375" height="577"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="65T-o4-s6P">
+                                <rect key="frame" x="0.0" y="74.5" width="375" height="592.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" layoutMarginsFollowReadableWidth="YES" text="2017 MARCH" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4b4-mY-kqj">
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="2017 MARCH" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4b4-mY-kqj">
                                         <rect key="frame" x="122" y="8" width="131.5" height="26.5"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" tag="12" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5dW-Mf-UfF">
-                                        <rect key="frame" x="269.5" y="10.5" width="40" height="40"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5dW-Mf-UfF">
+                                        <rect key="frame" x="261.5" y="8" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="5dW-Mf-UfF" secondAttribute="height" multiplier="1:1" id="dmm-Zn-vBc"/>
+                                        </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
                                         <size key="titleShadowOffset" width="1" height="1"/>
                                         <state key="normal" image="btn_right"/>
@@ -481,9 +468,11 @@
                                             <action selector="monthChangeTouch:" destination="DZn-lz-28q" eventType="touchUpInside" id="uI5-Em-4At"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="13" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CNk-1f-Ybt">
-                                        <rect key="frame" x="84" y="10.5" width="40" height="40"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CNk-1f-Ybt">
+                                        <rect key="frame" x="74" y="8" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="CNk-1f-Ybt" secondAttribute="height" multiplier="1:1" id="GL4-Lu-Qjz"/>
+                                        </constraints>
                                         <inset key="imageEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" image="btn_left"/>
                                         <connections>
@@ -492,55 +481,76 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.050980392159999999" green="0.15686274510000001" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="4b4-mY-kqj" firstAttribute="top" secondItem="65T-o4-s6P" secondAttribute="top" constant="8" id="Bkd-6m-PQb"/>
+                                    <constraint firstItem="4b4-mY-kqj" firstAttribute="leading" secondItem="CNk-1f-Ybt" secondAttribute="trailing" constant="8" id="EUj-uu-hlb"/>
+                                    <constraint firstItem="5dW-Mf-UfF" firstAttribute="top" secondItem="4b4-mY-kqj" secondAttribute="top" id="HhN-9V-pVP"/>
+                                    <constraint firstItem="4b4-mY-kqj" firstAttribute="top" secondItem="CNk-1f-Ybt" secondAttribute="top" id="XBM-bc-S4i"/>
+                                    <constraint firstItem="4b4-mY-kqj" firstAttribute="centerX" secondItem="65T-o4-s6P" secondAttribute="centerX" id="pk3-S2-4f4"/>
+                                    <constraint firstItem="5dW-Mf-UfF" firstAttribute="leading" secondItem="4b4-mY-kqj" secondAttribute="trailing" constant="8" id="u5b-XX-WeV"/>
+                                </constraints>
                             </view>
-                            <view alpha="0.0" contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="lLk-Nm-rGh" customClass="GADBannerView">
-                                <rect key="frame" x="27.5" y="617" width="320" height="50"/>
-                                <color key="backgroundColor" red="0.036042783410000001" green="0.059036590159999999" blue="0.15609470010000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hd9-AJ-lzm">
-                                <rect key="frame" x="0.0" y="20" width="375" height="89"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hd9-AJ-lzm">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="66.5"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wau-4r-B0e">
-                                        <rect key="frame" x="51" y="13" width="80" height="63"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="btn_month_on"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vBt-E8-IXV">
-                                        <rect key="frame" x="147" y="13" width="80" height="63"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="btn_day_off"/>
-                                        <connections>
-                                            <segue destination="BYZ-38-t0r" kind="custom" identifier="goCalendarToDaySegue" customClass="goRightTransitionSegue" customModule="MoonToday" customModuleProvider="target" id="Ot4-L3-etU"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uQF-OP-smD">
-                                        <rect key="frame" x="243" y="13" width="80" height="63"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="btn_ani_off"/>
-                                        <connections>
-                                            <segue destination="KCp-4h-9rI" kind="custom" identifier="goCalendarToAnimationSegue" customClass="goRightTransitionSegue" customModule="MoonToday" customModuleProvider="target" id="rPN-Sx-Qag"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="mzb-gm-u6G">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="66.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wau-4r-B0e">
+                                                <rect key="frame" x="0.0" y="0.0" width="125" height="66.5"/>
+                                                <state key="normal" image="btn_month_on"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vBt-E8-IXV">
+                                                <rect key="frame" x="125" y="0.0" width="125" height="66.5"/>
+                                                <state key="normal" image="btn_day_off"/>
+                                                <connections>
+                                                    <segue destination="BYZ-38-t0r" kind="custom" identifier="goCalendarToDaySegue" customClass="goRightTransitionSegue" customModule="MoonToday" customModuleProvider="target" id="Ot4-L3-etU"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uQF-OP-smD">
+                                                <rect key="frame" x="250" y="0.0" width="125" height="66.5"/>
+                                                <state key="normal" image="btn_ani_off"/>
+                                                <connections>
+                                                    <segue destination="KCp-4h-9rI" kind="custom" identifier="goCalendarToAnimationSegue" customClass="goRightTransitionSegue" customModule="MoonToday" customModuleProvider="target" id="rPN-Sx-Qag"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.036042783410000001" green="0.059036590159999999" blue="0.15609470010000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="mzb-gm-u6G" firstAttribute="leading" secondItem="hd9-AJ-lzm" secondAttribute="leading" id="FlM-w5-8Cd"/>
+                                    <constraint firstAttribute="trailing" secondItem="mzb-gm-u6G" secondAttribute="trailing" id="NOd-yH-vec"/>
+                                    <constraint firstItem="mzb-gm-u6G" firstAttribute="top" secondItem="hd9-AJ-lzm" secondAttribute="top" id="eVP-Vq-Kvk"/>
+                                    <constraint firstAttribute="bottom" secondItem="mzb-gm-u6G" secondAttribute="bottom" id="sjh-3R-Nxf"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.036042783410000001" green="0.059036590159999999" blue="0.15609470010000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="lLk-Nm-rGh" firstAttribute="bottom" secondItem="5gW-zF-3wq" secondAttribute="bottom" id="Xoo-Ch-keF"/>
-                            <constraint firstItem="lLk-Nm-rGh" firstAttribute="centerX" secondItem="ylK-vM-ZWl" secondAttribute="centerX" id="mKZ-Kt-zw9"/>
+                            <constraint firstItem="uno-zw-vvN" firstAttribute="top" secondItem="5gW-zF-3wq" secondAttribute="top" id="5cQ-90-yPp"/>
+                            <constraint firstItem="65T-o4-s6P" firstAttribute="bottom" secondItem="5gW-zF-3wq" secondAttribute="bottom" id="BNp-pE-6fV"/>
+                            <constraint firstItem="65T-o4-s6P" firstAttribute="leading" secondItem="5gW-zF-3wq" secondAttribute="leading" id="BQs-qq-KEG"/>
+                            <constraint firstItem="hd9-AJ-lzm" firstAttribute="leading" secondItem="5gW-zF-3wq" secondAttribute="leading" id="BU5-bl-YhI"/>
+                            <constraint firstItem="65T-o4-s6P" firstAttribute="top" secondItem="uno-zw-vvN" secondAttribute="bottom" constant="8" symbolic="YES" id="BdZ-Ve-9O6"/>
+                            <constraint firstItem="uno-zw-vvN" firstAttribute="trailing" secondItem="5gW-zF-3wq" secondAttribute="trailing" id="Jbd-N9-7O8"/>
+                            <constraint firstItem="65T-o4-s6P" firstAttribute="trailing" secondItem="5gW-zF-3wq" secondAttribute="trailing" id="LCI-49-GkG"/>
+                            <constraint firstItem="uno-zw-vvN" firstAttribute="height" secondItem="5gW-zF-3wq" secondAttribute="height" multiplier="0.1" id="OvL-zB-QeB"/>
+                            <constraint firstItem="hd9-AJ-lzm" firstAttribute="top" secondItem="5gW-zF-3wq" secondAttribute="top" id="apq-pU-Ty7"/>
+                            <constraint firstItem="hd9-AJ-lzm" firstAttribute="trailing" secondItem="5gW-zF-3wq" secondAttribute="trailing" id="euv-pn-6SL"/>
+                            <constraint firstItem="uno-zw-vvN" firstAttribute="leading" secondItem="5gW-zF-3wq" secondAttribute="leading" id="gvT-CI-rWl"/>
+                            <constraint firstItem="hd9-AJ-lzm" firstAttribute="height" secondItem="uno-zw-vvN" secondAttribute="height" id="qI2-dh-ovN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5gW-zF-3wq"/>
                     </view>
                     <connections>
                         <outlet property="animationButton" destination="uQF-OP-smD" id="HXF-OQ-RyW"/>
-                        <outlet property="bottomView" destination="lLk-Nm-rGh" id="qhD-6r-2mj"/>
                         <outlet property="calendarButton" destination="wau-4r-B0e" id="Z2d-Xr-A7V"/>
                         <outlet property="configButton" destination="DOb-Bn-A4o" id="wUd-78-YPh"/>
                         <outlet property="contentView" destination="65T-o4-s6P" id="ajG-YL-Goc"/>
                         <outlet property="dayButton" destination="vBt-E8-IXV" id="U3Y-Pc-1xd"/>
                         <outlet property="menuView" destination="hd9-AJ-lzm" id="Jue-qP-RzJ"/>
+                        <outlet property="menuViewTopMargin" destination="apq-pU-Ty7" id="cFX-2x-8k4"/>
                         <outlet property="nextMonth" destination="5dW-Mf-UfF" id="6EH-Or-vq5"/>
                         <outlet property="prevMonth" destination="CNk-1f-Ybt" id="kDg-kO-LtU"/>
                         <outlet property="titleButton" destination="jIj-GA-kQh" id="sL2-c2-0gc"/>
@@ -581,7 +591,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qFO-PE-vkj"/>
-        <segue reference="r8E-vd-Cna"/>
-        <segue reference="Qxp-Ng-Uox"/>
+        <segue reference="rPN-Sx-Qag"/>
+        <segue reference="Ot4-L3-etU"/>
     </inferredMetricsTieBreakers>
 </document>
