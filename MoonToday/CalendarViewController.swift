@@ -185,7 +185,7 @@ class CalendarViewController: UIViewController  {
         touchPlaySound()
         print("menuViewTopMargin \(menuViewTopMargin.constant), \(topView.bounds.height)")
         menuView.isHidden = !menuView.isHidden
-        menuViewTopMargin.constant = menuView.isHidden ? 0 : -topView.bounds.height
+        menuViewTopMargin.constant = menuView.isHidden ? 0 : topView.bounds.height
         UIView.animate(withDuration: 0.3) {
             self.loadViewIfNeeded()
         }
