@@ -37,8 +37,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
     
     @IBOutlet weak var dateButton: UIButton!
     @IBOutlet weak var selectButton: UIButton!
-    @IBOutlet weak var sunRiseLabel: UILabel!
-    @IBOutlet weak var sunSetLabel: UILabel!
     @IBOutlet weak var selectDatePicker: UIDatePicker!
     
     var touchPlayer:AVAudioPlayer?
@@ -131,11 +129,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
             DispatchQueue.main.asyncAfter(deadline: .now() + drand48()) {
                 self.Sailing(duration: 60.5)
             }
-            // Sun Rise Set 표시하기
-            print("selectDate \(selectDate)")
-            let moon = nCalc.moonRiseAndSet(date: selectDate, location: currentLocation.coordinate)
-            sunRiseLabel.text = timeFormatter.string(from: moon.rise)
-            sunSetLabel.text = timeFormatter.string(from: moon.set)
             // 한번만 실행하기 위한 변수 설정
             onceShow = true
         }
@@ -397,27 +390,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
             currentLocation = CLLocation(latitude: currentLocation.coordinate.latitude, longitude: 360 - currentLocation.coordinate.longitude)
         }
         //print("currentLocation latitude \(currentLocation.coordinate.latitude) longitude \(currentLocation.coordinate.longitude)")
-        // Sun Rise Set 표시하기
-        let riseDate = nCalc.sunRiseAndSet(date: selectDate, location: currentLocation.coordinate).rise
-        DispatchQueue.main.async {
-            self.sunRiseLabel.text = "sunRise : \(self.timeFormatter.string(from: riseDate))"
-            self.sunRiseLabel.sizeToFit()
-            UIView.animate(withDuration: 0.1, delay: 0.01, options: [.curveEaseInOut], animations: {
-                self.sunRiseLabel.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-            }, completion: { (finished) in
-                self.sunRiseLabel.transform = CGAffineTransform.identity
-            })
-        }
-        let setDate = nCalc.sunRiseAndSet(date: selectDate, location: currentLocation.coordinate).set
-        DispatchQueue.main.async {
-            self.sunSetLabel.text = "sunSet : \(self.timeFormatter.string(from: setDate))"
-            self.sunSetLabel.sizeToFit()
-            UIView.animate(withDuration: 0.1, delay: 0.01, options: [.curveEaseInOut], animations: {
-                self.sunSetLabel.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-            }, completion: { (finished) in
-                self.sunSetLabel.transform = CGAffineTransform.identity
-            })
-        }
         locationManager.stopUpdatingLocation() // 갱신 했으니 좌표 가져오기 중단
     }
     

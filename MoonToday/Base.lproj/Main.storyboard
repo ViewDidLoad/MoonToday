@@ -105,18 +105,6 @@
                                             <action selector="selectButtonTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ROR-tr-0HD"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SunRise : 2017.08.28 AM 05:38" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0a-MF-rZy">
-                                        <rect key="frame" x="86.5" y="449.5" width="202" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.56078431370000004" green="0.63137254899999995" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SunSet : 2017.08.28 PM 06:38" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="84Q-TJ-aZk">
-                                        <rect key="frame" x="89.5" y="474.5" width="196" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.56078431370000004" green="0.63137254899999995" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.023529411760000001" green="0.10980392160000001" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -129,12 +117,10 @@
                                     <constraint firstAttribute="trailing" secondItem="zwf-c6-cKK" secondAttribute="trailing" id="Cix-9e-JAj"/>
                                     <constraint firstItem="j11-2h-pF8" firstAttribute="leading" secondItem="E09-yF-FgA" secondAttribute="leading" id="Db1-3h-1L9"/>
                                     <constraint firstItem="QfQ-WT-G3S" firstAttribute="top" secondItem="sZp-6K-eMa" secondAttribute="bottom" id="G1x-1g-d5R"/>
-                                    <constraint firstItem="84Q-TJ-aZk" firstAttribute="top" secondItem="p0a-MF-rZy" secondAttribute="bottom" constant="8" id="H9o-5L-F84"/>
                                     <constraint firstItem="zwf-c6-cKK" firstAttribute="trailing" secondItem="QfQ-WT-G3S" secondAttribute="trailing" id="JgD-4u-zIx"/>
                                     <constraint firstItem="mKh-cJ-rh4" firstAttribute="top" secondItem="E09-yF-FgA" secondAttribute="top" id="Lhe-SD-u1R"/>
                                     <constraint firstItem="QfQ-WT-G3S" firstAttribute="height" secondItem="zwf-c6-cKK" secondAttribute="height" multiplier="0.3" id="LuV-B8-IZc"/>
                                     <constraint firstAttribute="trailing" secondItem="mKh-cJ-rh4" secondAttribute="trailing" id="MC0-zW-Ap5"/>
-                                    <constraint firstItem="84Q-TJ-aZk" firstAttribute="centerX" secondItem="E09-yF-FgA" secondAttribute="centerX" id="MDb-ak-fIZ"/>
                                     <constraint firstItem="uDB-4W-YPa" firstAttribute="height" secondItem="mKh-cJ-rh4" secondAttribute="height" multiplier="0.28" id="N24-5b-3zb"/>
                                     <constraint firstItem="4YY-2q-GUb" firstAttribute="top" secondItem="E09-yF-FgA" secondAttribute="top" id="OJV-jB-GoJ"/>
                                     <constraint firstItem="uDB-4W-YPa" firstAttribute="leading" secondItem="E09-yF-FgA" secondAttribute="leading" id="PGF-Ko-Vg0"/>
@@ -143,7 +129,6 @@
                                     <constraint firstItem="zwf-c6-cKK" firstAttribute="leading" secondItem="E09-yF-FgA" secondAttribute="leading" id="TDZ-15-suK"/>
                                     <constraint firstItem="sZp-6K-eMa" firstAttribute="height" secondItem="mKh-cJ-rh4" secondAttribute="height" multiplier="0.2" id="UO8-M8-1zC"/>
                                     <constraint firstAttribute="bottom" secondItem="zwf-c6-cKK" secondAttribute="bottom" id="We3-aD-J6F"/>
-                                    <constraint firstItem="p0a-MF-rZy" firstAttribute="top" secondItem="n3J-gP-sRS" secondAttribute="bottom" constant="8" id="Z0l-1o-sKs"/>
                                     <constraint firstItem="zwf-c6-cKK" firstAttribute="leading" secondItem="QfQ-WT-G3S" secondAttribute="leading" id="avz-oG-doR"/>
                                     <constraint firstItem="mKh-cJ-rh4" firstAttribute="height" secondItem="E09-yF-FgA" secondAttribute="height" multiplier="0.55" id="d1f-Jd-ByX"/>
                                     <constraint firstAttribute="trailing" secondItem="4YY-2q-GUb" secondAttribute="trailing" id="gYu-vL-zIa"/>
@@ -152,7 +137,6 @@
                                     <constraint firstAttribute="trailing" secondItem="uDB-4W-YPa" secondAttribute="trailing" id="jSD-Mo-Ias"/>
                                     <constraint firstItem="j11-2h-pF8" firstAttribute="top" secondItem="E09-yF-FgA" secondAttribute="top" id="l3g-cs-B7n"/>
                                     <constraint firstItem="GUr-dK-aVO" firstAttribute="height" secondItem="mKh-cJ-rh4" secondAttribute="height" multiplier="0.6" id="lBK-XZ-f8k"/>
-                                    <constraint firstItem="p0a-MF-rZy" firstAttribute="centerX" secondItem="E09-yF-FgA" secondAttribute="centerX" id="lQS-A3-YUx"/>
                                     <constraint firstItem="sZp-6K-eMa" firstAttribute="leading" secondItem="E09-yF-FgA" secondAttribute="leading" id="mGk-AS-QLQ"/>
                                     <constraint firstItem="n3J-gP-sRS" firstAttribute="centerY" secondItem="yBU-mu-ghn" secondAttribute="centerY" id="mbk-TE-SlG"/>
                                     <constraint firstItem="mKh-cJ-rh4" firstAttribute="leading" secondItem="E09-yF-FgA" secondAttribute="leading" id="n8a-VQ-A7C"/>
@@ -251,8 +235,6 @@
                         <outlet property="skyImageView" destination="mKh-cJ-rh4" id="Yvi-nV-OUO"/>
                         <outlet property="stars1ImageView" destination="4YY-2q-GUb" id="8dI-yW-OtB"/>
                         <outlet property="stars2ImageView" destination="j11-2h-pF8" id="DLF-Dh-1IG"/>
-                        <outlet property="sunRiseLabel" destination="p0a-MF-rZy" id="Cj4-5U-FXe"/>
-                        <outlet property="sunSetLabel" destination="84Q-TJ-aZk" id="doE-2A-szM"/>
                         <outlet property="titleButton" destination="R72-BY-G3f" id="9wf-ZL-XXX"/>
                         <outlet property="topView" destination="7eX-ah-IYG" id="5dI-48-1pH"/>
                     </connections>
