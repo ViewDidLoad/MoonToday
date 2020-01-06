@@ -76,10 +76,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
         timeFormatter.locale = Locale.current
         timeFormatter.dateFormat = "yyyy.MM.dd a hh:mm"
         //print("currentLocation latitude -> \(currentLocation.coordinate.latitude) longitude -> \(currentLocation.coordinate.longitude)")
-        let riseDate = nCalc.sunRiseAndSet(date: selectDate, location: currentLocation.coordinate).rise
-        sunRiseLabel.text = "sunRise : \(timeFormatter.string(from: riseDate))"
-        let setDate = nCalc.sunRiseAndSet(date: selectDate, location: currentLocation.coordinate).set
-        sunSetLabel.text = "sunRise : \(timeFormatter.string(from: setDate))"
         // 위경도 좌표 값 가져오기 설정
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.delegate = self
@@ -114,42 +110,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        // 화면크기 여기서 코드로 조정할 것, autolayout 사용하니까 아이패드랑 큰화면에서 전부 깨짐
-        let delta:CGFloat = 8.0
-        // topView
-        let topViewHeight = UIScreen.main.bounds.size.height * 0.1
-        topView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: topViewHeight)
-        // titleButton
-        titleButton.center = topView.center
-        let configButtonWidth = topViewHeight - delta
-        configButton.frame = CGRect(x: UIScreen.main.bounds.size.width - configButtonWidth, y: delta, width: configButtonWidth, height: configButtonWidth)
-        // menuView
-        menuView.frame.size.width = UIScreen.main.bounds.size.width
-        dayButton.frame.origin.x = (UIScreen.main.bounds.size.width / 2) - (dayButton.frame.size.width / 2)
-        monthButton.frame.origin.x = dayButton.frame.origin.x - (delta * 3) - monthButton.frame.size.width
-        animationButton.frame.origin.x = dayButton.frame.origin.x + dayButton.frame.size.width + (delta * 3)
-        // contentView
-        let contentViewHeight = UIScreen.main.bounds.size.height * 0.9
-        contentView.frame = CGRect(x: 0, y: topViewHeight, width: UIScreen.main.bounds.size.width, height: contentViewHeight)
-        // sky
-        skyImageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: contentViewHeight * 0.6)
-        stars1ImageView.frame = skyImageView.frame
-        stars2ImageView.frame = skyImageView.frame
-        moonImageView.bounds.size = CGSize(width: skyImageView.frame.size.width * 0.6, height: skyImageView.frame.size.width * 0.6)
-        moonImageView.center = skyImageView.center
-        let cloudHeight = skyImageView.frame.size.height * 0.15
-        cloud1ImageView.frame = CGRect(x: 0, y: skyImageView.frame.size.height - cloudHeight, width: UIScreen.main.bounds.size.width + delta, height: cloudHeight)
-        cloud2ImageView.frame = CGRect(x: -delta, y: skyImageView.frame.size.height - cloudHeight, width: UIScreen.main.bounds.size.width + delta, height: cloudHeight)
-        cloud3ImageView.frame = CGRect(x: 0, y: skyImageView.frame.size.height - cloudHeight, width: UIScreen.main.bounds.size.width + delta, height: cloudHeight)
-        // sea
-        seaImageView.frame = CGRect(x: 0, y: skyImageView.frame.size.height, width: UIScreen.main.bounds.size.width, height: contentViewHeight * 0.4)
-        seawaveImageView.frame = CGRect(x: 0, y: skyImageView.frame.size.height, width: UIScreen.main.bounds.size.width, height: seaImageView.bounds.size.height * 0.4)
-        sunSetLabel.frame = CGRect(x: (contentView.bounds.size.width/2) - (sunSetLabel.bounds.size.width/2), y: contentView.frame.size.height - sunSetLabel.bounds.size.height - 58, width: sunSetLabel.bounds.size.width, height: sunSetLabel.bounds.size.height)
-        sunSetLabel.sizeToFit()
-        sunRiseLabel.frame = CGRect(x: (contentView.bounds.size.width/2) - (sunRiseLabel.bounds.size.width/2), y: sunSetLabel.frame.origin.y - sunRiseLabel.bounds.size.height - delta, width: sunRiseLabel.bounds.size.width, height: sunRiseLabel.bounds.size.height)
-        sunRiseLabel.sizeToFit()
-        dateButton.frame = CGRect(x: (contentView.bounds.size.width/2) - (dateButton.bounds.size.width/2), y: sunRiseLabel.frame.origin.y - dateButton.bounds.size.height - delta, width: dateButton.bounds.size.width, height: dateButton.bounds.size.height)
-        selectButton.frame = CGRect(x: dateButton.frame.origin.x + dateButton.bounds.size.width + delta, y: dateButton.frame.origin.y + ((dateButton.bounds.size.height - selectButton.bounds.size.height)/2), width: selectButton.bounds.size.width, height: selectButton.bounds.size.height)
         // 한번만 실행하기
         if (onceShow == false) {
             // stardust 만들어서 이동시키기 drand48() -> 0.0 ~ 1.0 결과가 나오는데 이는 현재 .now() 보다 결과로 나온 초 이후에 실행한다.
@@ -172,10 +132,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
                 self.Sailing(duration: 60.5)
             }
             // Sun Rise Set 표시하기
-            let riseDate = nCalc.sunRiseAndSet(date: selectDate, location: currentLocation.coordinate).rise
-            sunRiseLabel.text = timeFormatter.string(from: riseDate)
-            let setDate = nCalc.sunRiseAndSet(date: selectDate, location: currentLocation.coordinate).set
-            sunSetLabel.text = timeFormatter.string(from: setDate)
+            print("selectDate \(selectDate)")
+            let moon = nCalc.moonRiseAndSet(date: selectDate, location: currentLocation.coordinate)
+            sunRiseLabel.text = timeFormatter.string(from: moon.rise)
+            sunSetLabel.text = timeFormatter.string(from: moon.set)
             // 한번만 실행하기 위한 변수 설정
             onceShow = true
         }
