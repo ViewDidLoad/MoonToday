@@ -21,6 +21,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
     @IBOutlet weak var monthButton: UIButton!
     @IBOutlet weak var dayButton: UIButton!
     @IBOutlet weak var animationButton: UIButton!
+    @IBOutlet weak var menuViewTopMargin: NSLayoutConstraint!
     
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var skyImageView: UIImageView!
@@ -36,9 +37,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
     
     @IBOutlet weak var dateButton: UIButton!
     @IBOutlet weak var selectButton: UIButton!
-    
-    @IBOutlet weak var bottomView: GADBannerView!
-    
     @IBOutlet weak var sunRiseLabel: UILabel!
     @IBOutlet weak var sunSetLabel: UILabel!
     @IBOutlet weak var selectDatePicker: UIDatePicker!
@@ -55,6 +53,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
     let textColor = UIColor(displayP3Red: 207/255, green: 217/255, blue: 226/255, alpha: 1.0)
     let darkBuleGray = UIColor(displayP3Red: 11/255, green: 12/255, blue: 30/255, alpha: 1.0)
     var onceShow:Bool = false // ViewDidAppear 한번만 실행하기 위한 변수
+    // 광고 배너
+    var bannerView: GADBannerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,12 +103,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
             swipeGesture.direction = direct
             self.contentView.addGestureRecognizer(swipeGesture)
         }
-        // AdMob Banner 설정, 광고단위 ID를 입력해야 함
-        bottomView.adSize = kGADAdSizeBanner
-        bottomView.adUnitID = "ca-app-pub-7335522539377881/9101989973"
-        bottomView.rootViewController = self
-        bottomView.delegate = self
-        bottomView.load(GADRequest())
+        // AdMob Banner 설정
+        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        bannerView.adUnitID = "ca-app-pub-7335522539377881/9101989973"
+        bannerView.rootViewController = self
+        bannerView.delegate = self
+        bannerView.load(GADRequest())
+        GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = ["855234fcd08b0733d55d5803d54db883"]
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -181,6 +182,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
         
     }
     
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
+        view.addConstraints([NSLayoutConstraint(item: bannerView, attribute: .bottom, relatedBy: .equal, toItem: bottomLayoutGuide, attribute: .top, multiplier: 1, constant: 0), NSLayoutConstraint(item: bannerView, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)])
+    }
+    
     func stardustDroping() {
         let x_max = skyImageView.bounds.size.width + skyImageView.bounds.size.height - 200.0
         stardust_x = CGFloat(drand48()) * x_max + 100.0 // 범위는 100 ~ 400 까지
@@ -217,7 +224,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
         }
     }
     
-    func twinkle(duration:TimeInterval) {
+    func twinkle(duration: TimeInterval) {
         UIView.animate(withDuration: duration, delay: 0, options: [.repeat, .autoreverse], animations: {
             self.stars1ImageView.alpha = 0.3
             self.stars2ImageView.alpha = 1.0
@@ -227,7 +234,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
         })
     }
     
-    func dreary(delta:CGFloat, duration:TimeInterval) {
+    func dreary(delta: CGFloat, duration: TimeInterval) {
         UIView.animate(withDuration: duration, delay: 0, options: [.repeat, .autoreverse], animations: {
             self.cloud1ImageView.frame.origin = CGPoint(x: self.cloud1ImageView.frame.origin.x - delta, y: self.cloud1ImageView.frame.origin.y)
             self.cloud2ImageView.frame.origin = CGPoint(x: self.cloud2ImageView.frame.origin.x + delta, y: self.cloud2ImageView.frame.origin.y)
@@ -235,13 +242,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
         }, completion: nil)
     }
     
-    func waving(delta:CGFloat, duration:TimeInterval) {
+    func waving(delta: CGFloat, duration: TimeInterval) {
         UIView.animate(withDuration: duration, delay: 0, options: [.repeat, .autoreverse], animations: {
             self.seawaveImageView.frame.origin = CGPoint(x: self.seawaveImageView.frame.origin.x - delta, y: self.seawaveImageView.frame.origin.y)
         }, completion: nil)
     }
     
-    func breathingMoon(scale:CGFloat, duration:TimeInterval) {
+    func breathingMoon(scale: CGFloat, duration: TimeInterval) {
         UIView.animate(withDuration: duration, delay: 0, options: [.repeat, .autoreverse], animations: {
             self.moonImageView.transform = CGAffineTransform(scaleX: scale, y: scale)
         }, completion: { finished in
@@ -249,14 +256,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
         })
     }
     
-    func Sailing(duration:TimeInterval) {
+    func Sailing(duration: TimeInterval) {
         let boatImage = UIImage(named: "boat")
         let boatImageView = UIImageView(image: boatImage)
         boatImageView.frame.origin = CGPoint(x: UIScreen.main.bounds.size.width, y: seawaveImageView.frame.origin.y - (boatImageView.bounds.size.height * 0.5))
         contentView.addSubview(boatImageView)
         
         UIView.animate(withDuration: duration, delay: 0.5, options: [.curveEaseInOut], animations: {
-            boatImageView.frame.origin.x = -self.bottomView.bounds.size.width
+            boatImageView.frame.origin.x = -UIScreen.main.bounds.size.width
         }, completion: { finished in
             boatImageView.removeFromSuperview()
         })
@@ -390,7 +397,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
         selectDatePicker.date = selectDate // 어쩔지 모르니까 피커에 변경된 날짜 적용하기
     }
     
-    fileprivate func selectDateMoonImageChanged(date:Date) {
+    fileprivate func selectDateMoonImageChanged(date: Date) {
         DispatchQueue.global().async {
             let phase = nCalc.moonPhase(date: date).phase
             let lunarDay = nCalc.phaseTolunarday(phase: phase)
@@ -483,10 +490,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
     // GADBannerViewDelegate
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         print("adViewDidReceivedAD")
-        bottomView.alpha = 0
-        UIView.animate(withDuration: 0.9) {
-            self.bottomView.alpha = 1.0
-        }
+        addBannerViewToView(bannerView)
     }
     
     func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
