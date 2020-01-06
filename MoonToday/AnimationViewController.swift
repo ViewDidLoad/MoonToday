@@ -9,9 +9,8 @@
 import UIKit
 import CoreLocation
 import AVFoundation
-import GoogleMobileAds
 
-class AnimationViewController: UIViewController, CLLocationManagerDelegate, GADBannerViewDelegate  {
+class AnimationViewController: UIViewController, CLLocationManagerDelegate  {
     
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var titleButton: UIButton!
@@ -21,6 +20,7 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate, GADB
     @IBOutlet weak var monthButton: UIButton!
     @IBOutlet weak var dayButton: UIButton!
     @IBOutlet weak var animationButton: UIButton!
+    @IBOutlet weak var menuViewTopMargin: NSLayoutConstraint!
     
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var universeImageView: UIImageView!
@@ -32,11 +32,10 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate, GADB
     @IBOutlet weak var moonImageView: UIImageView!
     @IBOutlet weak var dateButton: UIButton!
     @IBOutlet weak var selectButton: UIButton!
-    @IBOutlet weak var sunRiseLabel: UILabel!
-    @IBOutlet weak var sunSetLabel: UILabel!
+    @IBOutlet weak var dateBottomMargin: NSLayoutConstraint!
     
     @IBOutlet weak var selectDatePicker: UIDatePicker!
-    @IBOutlet weak var bottomView: GADBannerView!
+    @IBOutlet weak var datePickerTopMargin: NSLayoutConstraint!
     
     var touchPlayer:AVAudioPlayer?
     var timerPlayer:AVAudioPlayer?
@@ -65,10 +64,6 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate, GADB
         timeFormatter.locale = Locale.current
         timeFormatter.dateFormat = "yyyy.MM.dd a hh:mm"
         //print("currentLocation latitude -> \(currentLocation.coordinate.latitude) longitude -> \(currentLocation.coordinate.longitude)")
-        let riseDate = nCalc.sunRiseAndSet(date: selectDate, location: currentLocation.coordinate).rise
-        sunRiseLabel.text = "sunRise : \(timeFormatter.string(from: riseDate))"
-        let setDate = nCalc.sunRiseAndSet(date: selectDate, location: currentLocation.coordinate).set
-        sunSetLabel.text = "sunRise : \(timeFormatter.string(from: setDate))"
         // DatePicker 설정
         selectDatePicker.isHidden = true
         selectDatePicker.backgroundColor = UIColor(displayP3Red: 5/255, green: 28/255, blue: 46/255, alpha: 1.0)
@@ -83,41 +78,10 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate, GADB
             swipeGesture.direction = direct
             self.contentView.addGestureRecognizer(swipeGesture)
         }
-        // AdMob Banner 설정, 광고단위 ID를 입력해야 함
-        bottomView.adSize = kGADAdSizeBanner
-        bottomView.adUnitID = "ca-app-pub-7335522539377881/9101989973"
-        bottomView.rootViewController = self
-        bottomView.delegate = self
-        bottomView.load(GADRequest())
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        // 화면크기 여기서 코드로 조정할 것, autolayout 사용하니까 아이패드랑 큰화면에서 전부 깨짐
-        let delta:CGFloat = 8.0
-        // topView
-        let topViewHeight = UIScreen.main.bounds.size.height * 0.1
-        topView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: topViewHeight)
-        // titleButton
-        titleButton.center = topView.center
-        let configButtonWidth = topViewHeight - delta
-        configButton.frame = CGRect(x: UIScreen.main.bounds.size.width - configButtonWidth, y: delta, width: configButtonWidth, height: configButtonWidth)
-        // menuView
-        menuView.frame.size.width = UIScreen.main.bounds.size.width
-        dayButton.frame.origin.x = (UIScreen.main.bounds.size.width / 2) - (dayButton.frame.size.width / 2)
-        monthButton.frame.origin.x = dayButton.frame.origin.x - (delta * 3) - monthButton.frame.size.width
-        animationButton.frame.origin.x = dayButton.frame.origin.x + dayButton.frame.size.width + (delta * 3)
-        // contentView
-        let contentViewHeight = UIScreen.main.bounds.size.height * 0.9
-        contentView.frame = CGRect(x: 0, y: topViewHeight, width: UIScreen.main.bounds.size.width, height: contentViewHeight)
-        universeImageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: contentViewHeight)
-        sunSetLabel.frame = CGRect(x: (contentView.bounds.size.width/2) - (sunSetLabel.bounds.size.width/2), y: contentView.frame.size.height - sunSetLabel.bounds.size.height - 58, width: sunSetLabel.bounds.size.width, height: sunSetLabel.bounds.size.height)
-        sunSetLabel.sizeToFit()
-        sunRiseLabel.frame = CGRect(x: (contentView.bounds.size.width/2) - (sunRiseLabel.bounds.size.width/2), y: sunSetLabel.frame.origin.y - sunRiseLabel.bounds.size.height - delta, width: sunRiseLabel.bounds.size.width, height: sunRiseLabel.bounds.size.height)
-        sunRiseLabel.sizeToFit()
-        dateButton.frame = CGRect(x: (contentView.bounds.size.width/2) - (dateButton.bounds.size.width/2), y: sunRiseLabel.frame.origin.y - dateButton.bounds.size.height - delta, width: dateButton.bounds.size.width, height: dateButton.bounds.size.height)
-        selectButton.frame = CGRect(x: dateButton.frame.origin.x + dateButton.bounds.size.width + delta, y: dateButton.frame.origin.y + ((dateButton.bounds.size.height - selectButton.bounds.size.height)/2), width: selectButton.bounds.size.width, height: selectButton.bounds.size.height)
-        
         if isBeingPresented || isMovingToParentViewController // 제목 표시 근데 왜 두번 실행될까? 이 조건을 넣으면 한번만 실행된다.
         {
             print("viewDidAppear : \(String(describing: selectDate))")
@@ -262,74 +226,23 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate, GADB
     @IBAction func configButtonTouch(_ sender: UIButton) {
         if !animating {
             touchPlaySound()
-            // 메뉴뷰가 안보이면 보이도록 애니메이션으로 내려옴, 내려왔으면 올라가서 숨겨짐
-            //let menuTopConstraint = self.view.constraints.filter { $0.identifier == "menuViewTopConstraint"}.first
-            //print("configButtonTouch menuView.isHidden -> \(menuView.isHidden.description), menuViewTopConstraint : \(menuTopConstraint?.constant ?? 0.0)")
-            let duration = 0.1
-            let delay = 0.01
-            if menuView.isHidden // 메뉴 뷰가 숨겨져 있을 경우
-            {
-                DispatchQueue.main.async {
-                    //menuTopConstraint?.constant = 0.0
-                    //self.view.layoutIfNeeded() // constraint 변경하면 이걸 해줘야 적용이 됨
-                    self.menuView.isHidden = false
-                    UIView.animate(withDuration: duration, delay: delay, options: [.curveEaseIn], animations: {
-                        self.menuView.frame.origin.y = self.topView.frame.size.height
-                    }, completion: { finshed in
-                        //menuTopConstraint?.constant = self.topView.frame.size.height
-                        //self.view.layoutIfNeeded()
-                    })
-                    UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: 0.1, initialSpringVelocity: 5, options: [.curveEaseIn], animations: {
-                        sender.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-                    }, completion: { finished in
-                        sender.transform = CGAffineTransform.identity
-                        sender.setImage(UIImage(named: "btn_close"), for: .normal)
-                    })
-                }
-            }
-            else // 메뉴 바가 나타나 있을 경우
-            {
-                DispatchQueue.main.async {
-                    UIView.animate(withDuration: duration, delay: delay, options: [.curveEaseOut], animations: {
-                        self.menuView.frame.origin.y = self.topView.frame.origin.y
-                    }, completion: { finished in
-                        //menuTopConstraint?.constant = 0.0
-                        //self.view.layoutIfNeeded()
-                        self.menuView.isHidden = true
-                    })
-                    UIView.animate(withDuration: duration, delay: delay, usingSpringWithDamping: 0.1, initialSpringVelocity: 5, options: [.curveEaseOut], animations: {
-                        sender.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-                    }, completion: { finished in
-                        sender.transform = CGAffineTransform.identity
-                        sender.setImage(UIImage(named: "btn_menu"), for: .normal)
-                    })
-                }
+            menuView.isHidden = !menuView.isHidden
+            menuViewTopMargin.constant = menuView.isHidden ? 0 : topView.bounds.height
+            UIView.animate(withDuration: 0.3) {
+                self.loadViewIfNeeded()
             }
         }
     }
     
-    
     @IBAction func selectButtonTouch(_ sender: UIButton) {
         if !animating {
             touchPlaySound()
-            // DatePicker 감추어져 있으면 보이고 그렇지 않으면 감추기
-            let y:CGFloat = selectDatePicker.isHidden ? UIScreen.main.bounds.size.height - selectDatePicker.bounds.size.height : UIScreen.main.bounds.size.height
-            // 터치한 버튼 애니메이션
-            let btn_image = selectDatePicker.isHidden ? UIImage(named: "btn_select_down") : UIImage(named: "btn_select_up")
-            UIView.animate(withDuration: 0.2, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 5, options: [.curveEaseInOut], animations: {
-                self.selectButton.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-            }, completion: { finished in
-                self.selectButton.transform = CGAffineTransform.identity
-                self.selectButton.setImage(btn_image, for: .normal)
-            })
-            // 올라올때 날짜보다 더 올라오면 날짜와 버튼도 올리고 내려야함 <-- 이 알고리즘 구현할지는 나중에 한번 더 판단하자. 왜냐면 날짜 변경하면 바로 감출꺼니까.
-            // DatePicker 올라오고 내려가는거 애니메이션
-            if selectDatePicker.isHidden { selectDatePicker.isHidden = false }
-            UIView.animate(withDuration: 0.1, delay: 0.01, options: [.curveEaseInOut], animations: {
-                self.selectDatePicker.frame.origin.y = y
-            }, completion: { finished in
-                if y >= UIScreen.main.bounds.size.height {self.selectDatePicker.isHidden = true}
-            })
+            selectDatePicker.isHidden = !selectDatePicker.isHidden
+            datePickerTopMargin.constant = selectDatePicker.isHidden ? 0 : -selectDatePicker.bounds.height
+            dateBottomMargin.constant = selectDatePicker.isHidden ? 20 : selectDatePicker.bounds.height + 8
+            UIView.animate(withDuration: 0.3) {
+                self.loadViewIfNeeded()
+            }
         }
     }
     
@@ -390,28 +303,6 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate, GADB
         if currentLocation.coordinate.longitude < 0 { // 그리니치에서 서쪽으론 음수이므로 이를 보정해줘야 정확한 값이 나온다.
             currentLocation = CLLocation(latitude: currentLocation.coordinate.latitude, longitude: 360 - currentLocation.coordinate.longitude)
         }
-        //print("currentLocation latitude \(currentLocation.coordinate.latitude) longitude \(currentLocation.coordinate.longitude)")
-        // Sun Rise Set 표시하기
-        let riseDate = nCalc.sunRiseAndSet(date: selectDate, location: currentLocation.coordinate).rise
-        DispatchQueue.main.async {
-            self.sunRiseLabel.text = "sunRise : \(self.timeFormatter.string(from: riseDate))"
-            self.sunRiseLabel.sizeToFit()
-            UIView.animate(withDuration: 0.1, delay: 0.01, options: [.curveEaseInOut], animations: {
-                self.sunRiseLabel.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-            }, completion: { (finished) in
-                self.sunRiseLabel.transform = CGAffineTransform.identity
-            })
-        }
-        let setDate = nCalc.sunRiseAndSet(date: selectDate, location: currentLocation.coordinate).set
-        DispatchQueue.main.async {
-            self.sunSetLabel.text = "sunSet : \(self.timeFormatter.string(from: setDate))"
-            self.sunSetLabel.sizeToFit()
-            UIView.animate(withDuration: 0.1, delay: 0.01, options: [.curveEaseInOut], animations: {
-                self.sunSetLabel.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-            }, completion: { (finished) in
-                self.sunSetLabel.transform = CGAffineTransform.identity
-            })
-        }
         locationManager.stopUpdatingLocation() // 갱신 했으니 좌표 가져오기 중단
     }
     
@@ -451,15 +342,6 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate, GADB
             player.stop()
         } catch let error {
             print(error.localizedDescription)
-        }
-    }
-    
-    // GADBannerViewDelegate
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        print("adViewDidReceivedAD")
-        bottomView.alpha = 0
-        UIView.animate(withDuration: 0.9) {
-            self.bottomView.alpha = 1.0
         }
     }
     

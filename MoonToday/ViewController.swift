@@ -37,7 +37,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
     
     @IBOutlet weak var dateButton: UIButton!
     @IBOutlet weak var selectButton: UIButton!
+    @IBOutlet weak var dateBottomMargin: NSLayoutConstraint!
+    
     @IBOutlet weak var selectDatePicker: UIDatePicker!
+    @IBOutlet weak var datePickerTopMargin: NSLayoutConstraint!
     
     var touchPlayer:AVAudioPlayer?
     var swipePlayer:AVAudioPlayer?
@@ -236,15 +239,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
     
     @IBAction func configButtonTouch(_ sender: UIButton) {
         touchPlaySound()
-        print("menuViewTopMargin \(menuViewTopMargin.constant), \(topView.bounds.height)")
         menuView.isHidden = !menuView.isHidden
-        if menuView.isHidden {
-            menuViewTopMargin.constant = 0
-            menuView.isHidden = true
-        } else {
-            menuViewTopMargin.constant = topView.bounds.height
-            menuView.isHidden = false
-        }
+        menuViewTopMargin.constant = menuView.isHidden ? 0 : topView.bounds.height
         UIView.animate(withDuration: 0.3) {
             self.loadViewIfNeeded()
         }
@@ -253,25 +249,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
     
     @IBAction func selectButtonTouch(_ sender: UIButton) {
         touchPlaySound()
-        // DatePicker 감추어져 있으면 보이고 그렇지 않으면 감추기
-        let y:CGFloat = selectDatePicker.isHidden ? UIScreen.main.bounds.size.height - selectDatePicker.bounds.size.height : UIScreen.main.bounds.size.height
-        // 터치한 버튼 애니메이션
-        let btn_image = selectDatePicker.isHidden ? UIImage(named: "btn_select_down") : UIImage(named: "btn_select_up")
-        UIView.animate(withDuration: 0.2, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 5, options: [.curveEaseInOut], animations: {
-            self.selectButton.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-        }, completion: { finished in
-            self.selectButton.transform = CGAffineTransform.identity
-            self.selectButton.setImage(btn_image, for: .normal)
-        })
-        // 올라올때 날짜보다 더 올라오면 날짜와 버튼도 올리고 내려야함 <-- 이 알고리즘 구현할지는 나중에 한번 더 판단하자. 왜냐면 날짜 변경하면 바로 감출꺼니까.
-        // DatePicker 올라오고 내려가는거 애니메이션
-        if selectDatePicker.isHidden { selectDatePicker.isHidden = false }
-        UIView.animate(withDuration: 0.1, delay: 0.01, options: [.curveEaseInOut], animations: {
-            self.selectDatePicker.frame.origin.y = y
-        }, completion: { finished in
-            if y >= UIScreen.main.bounds.size.height {self.selectDatePicker.isHidden = true}
-        })
-        
+        selectDatePicker.isHidden = !selectDatePicker.isHidden
+        datePickerTopMargin.constant = selectDatePicker.isHidden ? 0 : -selectDatePicker.bounds.height
+        dateBottomMargin.constant = selectDatePicker.isHidden ? 20 : selectDatePicker.bounds.height + 8
+        UIView.animate(withDuration: 0.3) {
+            self.loadViewIfNeeded()
+        }
     }
     
     @objc func handleSwipe(sender: UISwipeGestureRecognizer) {

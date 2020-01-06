@@ -87,7 +87,7 @@
                                         <rect key="frame" x="0.0" y="320.5" width="375" height="81"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yBU-mu-ghn">
-                                        <rect key="frame" x="124" y="409.5" width="127" height="42"/>
+                                        <rect key="frame" x="124" y="538.5" width="127" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="2017.08.29"/>
                                         <connections>
@@ -95,7 +95,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n3J-gP-sRS">
-                                        <rect key="frame" x="259" y="419.5" width="22" height="22"/>
+                                        <rect key="frame" x="259" y="548.5" width="22" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="22" id="izi-wU-zrP"/>
                                             <constraint firstAttribute="height" constant="22" id="sd3-56-PMp"/>
@@ -118,6 +118,7 @@
                                     <constraint firstItem="j11-2h-pF8" firstAttribute="leading" secondItem="E09-yF-FgA" secondAttribute="leading" id="Db1-3h-1L9"/>
                                     <constraint firstItem="QfQ-WT-G3S" firstAttribute="top" secondItem="sZp-6K-eMa" secondAttribute="bottom" id="G1x-1g-d5R"/>
                                     <constraint firstItem="zwf-c6-cKK" firstAttribute="trailing" secondItem="QfQ-WT-G3S" secondAttribute="trailing" id="JgD-4u-zIx"/>
+                                    <constraint firstAttribute="bottom" secondItem="yBU-mu-ghn" secondAttribute="bottom" constant="20" id="LbI-e3-OhB"/>
                                     <constraint firstItem="mKh-cJ-rh4" firstAttribute="top" secondItem="E09-yF-FgA" secondAttribute="top" id="Lhe-SD-u1R"/>
                                     <constraint firstItem="QfQ-WT-G3S" firstAttribute="height" secondItem="zwf-c6-cKK" secondAttribute="height" multiplier="0.3" id="LuV-B8-IZc"/>
                                     <constraint firstAttribute="trailing" secondItem="mKh-cJ-rh4" secondAttribute="trailing" id="MC0-zW-Ap5"/>
@@ -133,7 +134,6 @@
                                     <constraint firstItem="mKh-cJ-rh4" firstAttribute="height" secondItem="E09-yF-FgA" secondAttribute="height" multiplier="0.55" id="d1f-Jd-ByX"/>
                                     <constraint firstAttribute="trailing" secondItem="4YY-2q-GUb" secondAttribute="trailing" id="gYu-vL-zIa"/>
                                     <constraint firstItem="GUr-dK-aVO" firstAttribute="centerY" secondItem="mKh-cJ-rh4" secondAttribute="centerY" id="hcI-fs-MUE"/>
-                                    <constraint firstItem="yBU-mu-ghn" firstAttribute="top" secondItem="QfQ-WT-G3S" secondAttribute="bottom" constant="8" id="ihU-fR-HCt"/>
                                     <constraint firstAttribute="trailing" secondItem="uDB-4W-YPa" secondAttribute="trailing" id="jSD-Mo-Ias"/>
                                     <constraint firstItem="j11-2h-pF8" firstAttribute="top" secondItem="E09-yF-FgA" secondAttribute="top" id="l3g-cs-B7n"/>
                                     <constraint firstItem="GUr-dK-aVO" firstAttribute="height" secondItem="mKh-cJ-rh4" secondAttribute="height" multiplier="0.6" id="lBK-XZ-f8k"/>
@@ -149,9 +149,8 @@
                                     <constraint firstItem="xnY-Wn-gPu" firstAttribute="leading" secondItem="E09-yF-FgA" secondAttribute="leading" id="zJm-Q8-Odl"/>
                                 </constraints>
                             </view>
-                            <datePicker hidden="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="Z9x-L9-9i9">
+                            <datePicker hidden="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="Z9x-L9-9i9">
                                 <rect key="frame" x="0.0" y="667" width="375" height="216"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.01933211088" green="0.1109654829" blue="0.18050330880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <userDefinedRuntimeAttributes>
@@ -201,10 +200,13 @@
                         </subviews>
                         <color key="backgroundColor" red="0.036042783410000001" green="0.059036590159999999" blue="0.15609470010000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Z9x-L9-9i9" firstAttribute="leading" secondItem="UIs-yM-yRs" secondAttribute="leading" id="5Jq-6Q-YMj"/>
                             <constraint firstItem="7eX-ah-IYG" firstAttribute="leading" secondItem="Mhs-gb-Rub" secondAttribute="leading" id="KFp-YS-k9k"/>
                             <constraint firstItem="7eX-ah-IYG" firstAttribute="height" secondItem="Mhs-gb-Rub" secondAttribute="height" multiplier="0.1" id="Kkd-aT-6JD"/>
+                            <constraint firstItem="Z9x-L9-9i9" firstAttribute="top" secondItem="E09-yF-FgA" secondAttribute="bottom" id="NtT-Y0-c9n"/>
                             <constraint firstItem="Mhs-gb-Rub" firstAttribute="bottom" secondItem="E09-yF-FgA" secondAttribute="bottom" id="Pe8-Rr-mVh"/>
                             <constraint firstItem="7o2-Cc-XLL" firstAttribute="leading" secondItem="Mhs-gb-Rub" secondAttribute="leading" id="ZsW-Jf-vkU"/>
+                            <constraint firstAttribute="trailing" secondItem="Z9x-L9-9i9" secondAttribute="trailing" id="aS0-GX-QEu"/>
                             <constraint firstItem="7eX-ah-IYG" firstAttribute="trailing" secondItem="Mhs-gb-Rub" secondAttribute="trailing" id="ccL-nz-oDR"/>
                             <constraint firstItem="7o2-Cc-XLL" firstAttribute="trailing" secondItem="Mhs-gb-Rub" secondAttribute="trailing" id="ezV-hv-nb5"/>
                             <constraint firstItem="E09-yF-FgA" firstAttribute="leading" secondItem="Mhs-gb-Rub" secondAttribute="leading" id="iln-Pw-5fx"/>
@@ -223,7 +225,9 @@
                         <outlet property="cloud3ImageView" destination="uDB-4W-YPa" id="Qd3-lv-MjZ"/>
                         <outlet property="configButton" destination="Mib-ZC-uLx" id="4QS-Xc-u4C"/>
                         <outlet property="contentView" destination="E09-yF-FgA" id="eti-cv-I1X"/>
+                        <outlet property="dateBottomMargin" destination="LbI-e3-OhB" id="KXI-Md-pW9"/>
                         <outlet property="dateButton" destination="yBU-mu-ghn" id="QSl-9d-Xob"/>
+                        <outlet property="datePickerTopMargin" destination="NtT-Y0-c9n" id="o0n-hk-cFY"/>
                         <outlet property="dayButton" destination="ShW-zd-GNs" id="8m0-VP-pCr"/>
                         <outlet property="menuView" destination="7o2-Cc-XLL" id="jq8-Or-IDg"/>
                         <outlet property="menuViewTopMargin" destination="wHx-ea-WaQ" id="Iuy-P7-JAz"/>
@@ -252,13 +256,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xv6-KY-bfA">
-                                <rect key="frame" x="0.0" y="20" width="375" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xv6-KY-bfA">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="66.5"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TCm-2g-ynz">
-                                        <rect key="frame" x="129" y="15" width="117" height="39"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TCm-2g-ynz">
+                                        <rect key="frame" x="129" y="13.5" width="117" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="Moon Today">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -267,9 +269,11 @@
                                             <action selector="titleButtonTouch:" destination="KCp-4h-9rI" eventType="touchUpInside" id="QQx-Xo-pCK"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zvN-7M-XLT">
-                                        <rect key="frame" x="332" y="17.5" width="35" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zvN-7M-XLT">
+                                        <rect key="frame" x="327" y="13.5" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="zvN-7M-XLT" secondAttribute="height" multiplier="1:1" id="8cZ-Qz-gpk"/>
+                                        </constraints>
                                         <state key="normal" image="btn_menu"/>
                                         <connections>
                                             <action selector="configButtonTouch:" destination="KCp-4h-9rI" eventType="touchUpInside" id="4mG-rZ-6Yc"/>
@@ -277,14 +281,20 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.036042783410000001" green="0.059036590159999999" blue="0.15609470010000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="zvN-7M-XLT" firstAttribute="height" secondItem="Xv6-KY-bfA" secondAttribute="height" multiplier="0.6" id="CqE-Ve-Jqr"/>
+                                    <constraint firstItem="zvN-7M-XLT" firstAttribute="centerY" secondItem="Xv6-KY-bfA" secondAttribute="centerY" id="EPj-lJ-HSE"/>
+                                    <constraint firstItem="TCm-2g-ynz" firstAttribute="height" secondItem="Xv6-KY-bfA" secondAttribute="height" multiplier="0.6" id="Zdv-EK-9AA"/>
+                                    <constraint firstItem="TCm-2g-ynz" firstAttribute="centerY" secondItem="Xv6-KY-bfA" secondAttribute="centerY" id="fZm-50-bxe"/>
+                                    <constraint firstItem="TCm-2g-ynz" firstAttribute="centerX" secondItem="Xv6-KY-bfA" secondAttribute="centerX" id="mFH-mV-iU7"/>
+                                    <constraint firstAttribute="trailing" secondItem="zvN-7M-XLT" secondAttribute="trailing" constant="8" id="mJX-1l-2mn"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BTb-kw-kk3">
-                                <rect key="frame" x="0.0" y="90" width="375" height="577"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BTb-kw-kk3">
+                                <rect key="frame" x="0.0" y="66.5" width="375" height="600.5"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg_universe" translatesAutoresizingMaskIntoConstraints="NO" id="dnF-j9-lOf">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="577"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_universe" translatesAutoresizingMaskIntoConstraints="NO" id="dnF-j9-lOf">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="600.5"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bh7-da-aEj">
                                         <rect key="frame" x="171" y="78" width="32" height="220"/>
@@ -312,18 +322,19 @@
                                         <rect key="frame" x="153" y="153" width="69" height="69"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5A8-lz-km7">
-                                        <rect key="frame" x="117" y="440" width="141" height="46"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5A8-lz-km7">
+                                        <rect key="frame" x="124" y="538.5" width="127" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="2017.08.29"/>
                                         <connections>
                                             <action selector="selectButtonTouch:" destination="KCp-4h-9rI" eventType="touchUpInside" id="b7x-o4-C8s"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zdK-Gk-xEi">
-                                        <rect key="frame" x="266" y="452" width="18" height="22"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zdK-Gk-xEi">
+                                        <rect key="frame" x="259" y="548.5" width="18" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="zdK-Gk-xEi" secondAttribute="height" multiplier="9:11" id="kkg-si-I1R"/>
+                                        </constraints>
                                         <state key="normal" image="btn_select_up"/>
                                         <connections>
                                             <action selector="selectButtonTouch:" destination="KCp-4h-9rI" eventType="touchUpInside" id="Ygi-5d-9ZC"/>
@@ -331,10 +342,19 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.050980392159999999" green="0.15686274510000001" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="dnF-j9-lOf" secondAttribute="trailing" id="3YV-Hu-1Lj"/>
+                                    <constraint firstAttribute="bottom" secondItem="5A8-lz-km7" secondAttribute="bottom" constant="20" id="CWB-0B-enV"/>
+                                    <constraint firstAttribute="bottom" secondItem="dnF-j9-lOf" secondAttribute="bottom" id="O57-eb-ErJ"/>
+                                    <constraint firstItem="dnF-j9-lOf" firstAttribute="leading" secondItem="BTb-kw-kk3" secondAttribute="leading" id="QBg-s8-VlQ"/>
+                                    <constraint firstItem="5A8-lz-km7" firstAttribute="centerX" secondItem="BTb-kw-kk3" secondAttribute="centerX" id="f2b-oj-9h4"/>
+                                    <constraint firstItem="dnF-j9-lOf" firstAttribute="top" secondItem="BTb-kw-kk3" secondAttribute="top" id="rXC-HJ-yak"/>
+                                    <constraint firstItem="zdK-Gk-xEi" firstAttribute="centerY" secondItem="5A8-lz-km7" secondAttribute="centerY" id="s5D-Gd-iux"/>
+                                    <constraint firstItem="zdK-Gk-xEi" firstAttribute="leading" secondItem="5A8-lz-km7" secondAttribute="trailing" constant="8" id="smm-3Y-LAT"/>
+                                </constraints>
                             </view>
-                            <datePicker hidden="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="Sk0-fP-hfu">
-                                <rect key="frame" x="0.0" y="668" width="375" height="162"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <datePicker hidden="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="Sk0-fP-hfu">
+                                <rect key="frame" x="0.0" y="667" width="375" height="216"/>
                                 <color key="backgroundColor" red="0.01933211088" green="0.1109654829" blue="0.18050330880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="textColor">
@@ -345,47 +365,74 @@
                                     <action selector="selectDatePickerChanged:" destination="KCp-4h-9rI" eventType="valueChanged" id="BZN-EZ-1zP"/>
                                 </connections>
                             </datePicker>
-                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zaE-xk-EFv">
-                                <rect key="frame" x="0.0" y="20" width="375" height="89"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zaE-xk-EFv">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="66.5"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cci-DD-CY0">
-                                        <rect key="frame" x="51" y="13" width="80" height="63"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="btn_month_off"/>
-                                        <connections>
-                                            <segue destination="DZn-lz-28q" kind="custom" identifier="goAnimationToCalendarSegue" customClass="goLeftTransitionSegue" customModule="MoonToday" customModuleProvider="target" id="Blr-H0-hk1"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pn-mE-spY">
-                                        <rect key="frame" x="147" y="13.5" width="80" height="63"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="btn_day_off"/>
-                                        <connections>
-                                            <segue destination="BYZ-38-t0r" kind="custom" identifier="goAnimationToDaySegue" customClass="goLeftTransitionSegue" customModule="MoonToday" customModuleProvider="target" id="Qxp-Ng-Uox"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0S2-j2-JSF">
-                                        <rect key="frame" x="243" y="13.5" width="80" height="63"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="btn_ani_on"/>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="mvQ-Ht-7Zy">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="66.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cci-DD-CY0">
+                                                <rect key="frame" x="0.0" y="0.0" width="125" height="66.5"/>
+                                                <state key="normal" image="btn_month_off"/>
+                                                <connections>
+                                                    <segue destination="DZn-lz-28q" kind="custom" identifier="goAnimationToCalendarSegue" customClass="goLeftTransitionSegue" customModule="MoonToday" customModuleProvider="target" id="Blr-H0-hk1"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pn-mE-spY">
+                                                <rect key="frame" x="125" y="0.0" width="125" height="66.5"/>
+                                                <state key="normal" image="btn_day_off"/>
+                                                <connections>
+                                                    <segue destination="BYZ-38-t0r" kind="custom" identifier="goAnimationToDaySegue" customClass="goLeftTransitionSegue" customModule="MoonToday" customModuleProvider="target" id="Qxp-Ng-Uox"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0S2-j2-JSF">
+                                                <rect key="frame" x="250" y="0.0" width="125" height="66.5"/>
+                                                <state key="normal" image="btn_ani_on"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.036042783410000001" green="0.059036590159999999" blue="0.15609470010000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="mvQ-Ht-7Zy" firstAttribute="top" secondItem="zaE-xk-EFv" secondAttribute="top" id="1MP-A2-RGg"/>
+                                    <constraint firstAttribute="bottom" secondItem="mvQ-Ht-7Zy" secondAttribute="bottom" id="8TI-Bl-48w"/>
+                                    <constraint firstItem="mvQ-Ht-7Zy" firstAttribute="leading" secondItem="zaE-xk-EFv" secondAttribute="leading" id="ChW-LW-iL7"/>
+                                    <constraint firstAttribute="trailing" secondItem="mvQ-Ht-7Zy" secondAttribute="trailing" id="EAl-53-qeo"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.036042783410000001" green="0.059036590159999999" blue="0.15609470010000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="zaE-xk-EFv" firstAttribute="leading" secondItem="tOK-pY-g9z" secondAttribute="leading" id="5NM-nw-gZO"/>
+                            <constraint firstItem="Xv6-KY-bfA" firstAttribute="leading" secondItem="tOK-pY-g9z" secondAttribute="leading" id="8vd-Uu-v6Y"/>
+                            <constraint firstItem="zaE-xk-EFv" firstAttribute="trailing" secondItem="tOK-pY-g9z" secondAttribute="trailing" id="AkJ-fp-5B5"/>
+                            <constraint firstItem="Xv6-KY-bfA" firstAttribute="top" secondItem="tOK-pY-g9z" secondAttribute="top" id="CSO-Lq-yGK"/>
+                            <constraint firstItem="BTb-kw-kk3" firstAttribute="leading" secondItem="tOK-pY-g9z" secondAttribute="leading" id="FmV-6x-k7h"/>
+                            <constraint firstItem="zaE-xk-EFv" firstAttribute="height" secondItem="Xv6-KY-bfA" secondAttribute="height" id="H11-PN-BdY"/>
+                            <constraint firstItem="BTb-kw-kk3" firstAttribute="trailing" secondItem="tOK-pY-g9z" secondAttribute="trailing" id="I33-Yh-s3e"/>
+                            <constraint firstAttribute="trailing" secondItem="Sk0-fP-hfu" secondAttribute="trailing" id="WJT-KY-txh"/>
+                            <constraint firstItem="Sk0-fP-hfu" firstAttribute="top" secondItem="BTb-kw-kk3" secondAttribute="bottom" id="aCK-kE-2fd"/>
+                            <constraint firstItem="Sk0-fP-hfu" firstAttribute="leading" secondItem="N38-u3-YeX" secondAttribute="leading" id="eR9-qX-u6V"/>
+                            <constraint firstItem="BTb-kw-kk3" firstAttribute="bottom" secondItem="tOK-pY-g9z" secondAttribute="bottom" id="gSZ-uH-wd8"/>
+                            <constraint firstItem="Xv6-KY-bfA" firstAttribute="trailing" secondItem="tOK-pY-g9z" secondAttribute="trailing" id="hnO-mc-hX5"/>
+                            <constraint firstItem="BTb-kw-kk3" firstAttribute="top" secondItem="Xv6-KY-bfA" secondAttribute="bottom" id="q1n-Jk-JRx"/>
+                            <constraint firstItem="zaE-xk-EFv" firstAttribute="top" secondItem="tOK-pY-g9z" secondAttribute="top" id="rYr-WH-Tjk"/>
+                            <constraint firstItem="Xv6-KY-bfA" firstAttribute="height" secondItem="tOK-pY-g9z" secondAttribute="height" multiplier="0.1" id="yI3-9A-c28"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="tOK-pY-g9z"/>
                     </view>
                     <connections>
                         <outlet property="animationButton" destination="0S2-j2-JSF" id="Ub0-tZ-bE5"/>
                         <outlet property="configButton" destination="zvN-7M-XLT" id="ImA-Hf-0fK"/>
                         <outlet property="contentView" destination="BTb-kw-kk3" id="3er-aK-0uF"/>
+                        <outlet property="dateBottomMargin" destination="CWB-0B-enV" id="1he-wo-ZH8"/>
                         <outlet property="dateButton" destination="5A8-lz-km7" id="Rno-zC-rIn"/>
+                        <outlet property="datePickerTopMargin" destination="aCK-kE-2fd" id="8Go-kK-e5b"/>
                         <outlet property="dayButton" destination="3pn-mE-spY" id="IhS-vT-DZa"/>
                         <outlet property="earthImageView" destination="pBQ-eA-tLV" id="mGy-dq-t54"/>
                         <outlet property="earthView" destination="bh7-da-aEj" id="yEo-QX-17U"/>
                         <outlet property="menuView" destination="zaE-xk-EFv" id="4fz-S6-60A"/>
+                        <outlet property="menuViewTopMargin" destination="rYr-WH-Tjk" id="ZEe-Ih-3G4"/>
                         <outlet property="monthButton" destination="Cci-DD-CY0" id="C6i-x6-eX9"/>
                         <outlet property="moonImageView" destination="IC6-BO-ir9" id="RLi-Xw-xpI"/>
                         <outlet property="moonView" destination="eIb-F6-fnN" id="sW3-r0-8kD"/>
@@ -590,8 +637,8 @@
         <image name="stars2" width="375" height="320"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qFO-PE-vkj"/>
-        <segue reference="rPN-Sx-Qag"/>
-        <segue reference="Ot4-L3-etU"/>
+        <segue reference="Blr-H0-hk1"/>
+        <segue reference="r8E-vd-Cna"/>
+        <segue reference="Qxp-Ng-Uox"/>
     </inferredMetricsTieBreakers>
 </document>
