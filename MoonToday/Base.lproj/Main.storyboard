@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MoonToday" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UIs-yM-yRs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7eX-ah-IYG">
+                                <rect key="frame" x="0.0" y="20" width="375" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R72-BY-G3f">
+                                        <rect key="frame" x="129" y="15" width="117" height="39"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <state key="normal" title="Moon Today">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="titleButtonTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vhh-Cw-4tN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mib-ZC-uLx">
+                                        <rect key="frame" x="332" y="17.5" width="35" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="btn_menu"/>
+                                        <connections>
+                                            <action selector="configButtonTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="umC-4l-Z84"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.036042783409357071" green="0.059036590158939362" blue="0.15609470009803772" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E09-yF-FgA">
+                                <rect key="frame" x="0.0" y="90" width="375" height="577"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg_sky" translatesAutoresizingMaskIntoConstraints="NO" id="mKh-cJ-rh4">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="320"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="stars1" translatesAutoresizingMaskIntoConstraints="NO" id="4YY-2q-GUb">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="320"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="stars2" translatesAutoresizingMaskIntoConstraints="NO" id="j11-2h-pF8">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="320"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="b_moon_16" translatesAutoresizingMaskIntoConstraints="NO" id="GUr-dK-aVO">
+                                        <rect key="frame" x="91" y="64" width="192" height="192"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cloud3" translatesAutoresizingMaskIntoConstraints="NO" id="uDB-4W-YPa">
+                                        <rect key="frame" x="-2" y="227" width="380" height="93"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cloud2" translatesAutoresizingMaskIntoConstraints="NO" id="sZp-6K-eMa">
+                                        <rect key="frame" x="-2" y="252" width="380" height="68"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cloud1" translatesAutoresizingMaskIntoConstraints="NO" id="xnY-Wn-gPu">
+                                        <rect key="frame" x="-2" y="259" width="380" height="61"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg_sea" translatesAutoresizingMaskIntoConstraints="NO" id="zwf-c6-cKK">
+                                        <rect key="frame" x="0.0" y="320" width="375" height="257"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sea_wave" translatesAutoresizingMaskIntoConstraints="NO" id="QfQ-WT-G3S">
+                                        <rect key="frame" x="0.0" y="320" width="375" height="65"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n3J-gP-sRS">
+                                        <rect key="frame" x="266.5" y="405" width="18" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="btn_select_up"/>
+                                        <connections>
+                                            <action selector="selectButtonTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ROR-tr-0HD"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yBU-mu-ghn">
+                                        <rect key="frame" x="117.5" y="393" width="141" height="46"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="2017.08.29"/>
+                                        <connections>
+                                            <action selector="selectButtonTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iPT-Bo-7Gz"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SunRise : 2017.08.28 AM 05:38" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0a-MF-rZy">
+                                        <rect key="frame" x="87" y="447" width="202" height="17"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.56078431370000004" green="0.63137254899999995" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SunSet : 2017.08.28 PM 06:38" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="84Q-TJ-aZk">
+                                        <rect key="frame" x="93" y="495" width="196" height="17"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.56078431370000004" green="0.63137254899999995" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.023529411760000001" green="0.10980392160000001" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view alpha="0.0" contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="QOx-FZ-sku" customClass="GADBannerView">
+                                <rect key="frame" x="27.5" y="617" width="320" height="50"/>
+                                <color key="backgroundColor" red="0.036042783410000001" green="0.059036590159999999" blue="0.15609470010000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <datePicker hidden="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="Z9x-L9-9i9">
+                                <rect key="frame" x="0.0" y="667" width="375" height="216"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.01933211088" green="0.1109654829" blue="0.18050330880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <date key="date" timeIntervalSinceReferenceDate="528358333.25537997">
+                                    <!--2017-09-29 06:12:13 +0000-->
+                                </date>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                        <color key="value" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="selectDatePickerChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="grf-cc-YfX"/>
+                                </connections>
+                            </datePicker>
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7o2-Cc-XLL">
+                                <rect key="frame" x="0.0" y="20" width="375" height="89"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5bz-et-rwt">
+                                        <rect key="frame" x="51" y="13.5" width="80" height="63"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="btn_month_off"/>
+                                        <connections>
+                                            <segue destination="DZn-lz-28q" kind="custom" identifier="goDayToCalendarSegue" customClass="goLeftTransitionSegue" customModule="MoonToday" customModuleProvider="target" id="qFO-PE-vkj"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ShW-zd-GNs">
+                                        <rect key="frame" x="147" y="13.5" width="80" height="63"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="btn_day_on"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Iv-fl-4nA">
+                                        <rect key="frame" x="243" y="13.5" width="80" height="63"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="btn_ani_off"/>
+                                        <connections>
+                                            <segue destination="KCp-4h-9rI" kind="custom" identifier="goDayToAnimationSegue" customClass="goRightTransitionSegue" customModule="MoonToday" customModuleProvider="target" id="r8E-vd-Cna"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.036042783410000001" green="0.059036590159999999" blue="0.15609470010000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.036042783410000001" green="0.059036590159999999" blue="0.15609470010000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Mhs-gb-Rub" firstAttribute="bottom" secondItem="QOx-FZ-sku" secondAttribute="bottom" id="ke5-5t-Emh"/>
+                            <constraint firstItem="QOx-FZ-sku" firstAttribute="centerX" secondItem="UIs-yM-yRs" secondAttribute="centerX" id="ulH-mY-Bit"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Mhs-gb-Rub"/>
+                    </view>
+                    <connections>
+                        <outlet property="animationButton" destination="8Iv-fl-4nA" id="QXu-tm-qZA"/>
+                        <outlet property="bottomView" destination="QOx-FZ-sku" id="34n-Us-qed"/>
+                        <outlet property="cloud1ImageView" destination="xnY-Wn-gPu" id="jRQ-yf-ufi"/>
+                        <outlet property="cloud2ImageView" destination="sZp-6K-eMa" id="mgn-VH-vz7"/>
+                        <outlet property="cloud3ImageView" destination="uDB-4W-YPa" id="Qd3-lv-MjZ"/>
+                        <outlet property="configButton" destination="Mib-ZC-uLx" id="4QS-Xc-u4C"/>
+                        <outlet property="contentView" destination="E09-yF-FgA" id="eti-cv-I1X"/>
+                        <outlet property="dateButton" destination="yBU-mu-ghn" id="QSl-9d-Xob"/>
+                        <outlet property="dayButton" destination="ShW-zd-GNs" id="8m0-VP-pCr"/>
+                        <outlet property="menuView" destination="7o2-Cc-XLL" id="jq8-Or-IDg"/>
+                        <outlet property="monthButton" destination="5bz-et-rwt" id="7tA-6T-jhp"/>
+                        <outlet property="moonImageView" destination="GUr-dK-aVO" id="3pj-Ps-Nws"/>
+                        <outlet property="seaImageView" destination="zwf-c6-cKK" id="QlW-s3-6IX"/>
+                        <outlet property="seawaveImageView" destination="QfQ-WT-G3S" id="ZYH-Er-4od"/>
+                        <outlet property="selectButton" destination="n3J-gP-sRS" id="Ltl-Yp-F7O"/>
+                        <outlet property="selectDatePicker" destination="Z9x-L9-9i9" id="2dT-rU-Cqe"/>
+                        <outlet property="skyImageView" destination="mKh-cJ-rh4" id="Yvi-nV-OUO"/>
+                        <outlet property="stars1ImageView" destination="4YY-2q-GUb" id="8dI-yW-OtB"/>
+                        <outlet property="stars2ImageView" destination="j11-2h-pF8" id="DLF-Dh-1IG"/>
+                        <outlet property="sunRiseLabel" destination="p0a-MF-rZy" id="Cj4-5U-FXe"/>
+                        <outlet property="sunSetLabel" destination="84Q-TJ-aZk" id="doE-2A-szM"/>
+                        <outlet property="titleButton" destination="R72-BY-G3f" id="9wf-ZL-XXX"/>
+                        <outlet property="topView" destination="7eX-ah-IYG" id="5dI-48-1pH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="688.79999999999995" y="-99.400299850074973"/>
+        </scene>
+        <!--Animation View Controller-->
+        <scene sceneID="KN2-zm-0oh">
+            <objects>
+                <viewController id="KCp-4h-9rI" customClass="AnimationViewController" customModule="MoonToday" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="N38-u3-YeX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xv6-KY-bfA">
+                                <rect key="frame" x="0.0" y="20" width="375" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TCm-2g-ynz">
+                                        <rect key="frame" x="129" y="15" width="117" height="39"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <state key="normal" title="Moon Today">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="titleButtonTouch:" destination="KCp-4h-9rI" eventType="touchUpInside" id="QQx-Xo-pCK"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zvN-7M-XLT">
+                                        <rect key="frame" x="332" y="17.5" width="35" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="btn_menu"/>
+                                        <connections>
+                                            <action selector="configButtonTouch:" destination="KCp-4h-9rI" eventType="touchUpInside" id="4mG-rZ-6Yc"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.036042783410000001" green="0.059036590159999999" blue="0.15609470010000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BTb-kw-kk3">
+                                <rect key="frame" x="0.0" y="90" width="375" height="577"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg_universe" translatesAutoresizingMaskIntoConstraints="NO" id="dnF-j9-lOf">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="577"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bh7-da-aEj">
+                                        <rect key="frame" x="171" y="78" width="32" height="220"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eIb-F6-fnN">
+                                                <rect key="frame" x="2" y="-50" width="28" height="100"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ico_moon" translatesAutoresizingMaskIntoConstraints="NO" id="IC6-BO-ir9">
+                                                        <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ico_earth" translatesAutoresizingMaskIntoConstraints="NO" id="pBQ-eA-tLV">
+                                                <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ico_sun" translatesAutoresizingMaskIntoConstraints="NO" id="Hsf-xP-hEa">
+                                        <rect key="frame" x="153" y="153" width="69" height="69"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5A8-lz-km7">
+                                        <rect key="frame" x="117" y="440" width="141" height="46"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="2017.08.29"/>
+                                        <connections>
+                                            <action selector="selectButtonTouch:" destination="KCp-4h-9rI" eventType="touchUpInside" id="b7x-o4-C8s"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zdK-Gk-xEi">
+                                        <rect key="frame" x="266" y="452" width="18" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="btn_select_up"/>
+                                        <connections>
+                                            <action selector="selectButtonTouch:" destination="KCp-4h-9rI" eventType="touchUpInside" id="Ygi-5d-9ZC"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SunRise : 2017.08.28 AM 05:38" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0c-qz-pOJ">
+                                        <rect key="frame" x="87" y="494" width="202" height="17"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.56078431370000004" green="0.63137254899999995" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SunSet : 2017.08.28 PM 06:38" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y6m-vy-3oF">
+                                        <rect key="frame" x="90" y="513" width="196" height="17"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.56078431370000004" green="0.63137254899999995" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.050980392159999999" green="0.15686274510000001" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <datePicker hidden="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="Sk0-fP-hfu">
+                                <rect key="frame" x="0.0" y="668" width="375" height="162"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.01933211088" green="0.1109654829" blue="0.18050330880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <date key="date" timeIntervalSinceReferenceDate="528358333.25537997">
+                                    <!--2017-09-29 06:12:13 +0000-->
+                                </date>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                        <color key="value" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="selectDatePickerChanged:" destination="KCp-4h-9rI" eventType="valueChanged" id="BZN-EZ-1zP"/>
+                                </connections>
+                            </datePicker>
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zaE-xk-EFv">
+                                <rect key="frame" x="0.0" y="20" width="375" height="89"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cci-DD-CY0">
+                                        <rect key="frame" x="51" y="13" width="80" height="63"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="btn_month_off"/>
+                                        <connections>
+                                            <segue destination="DZn-lz-28q" kind="custom" identifier="goAnimationToCalendarSegue" customClass="goLeftTransitionSegue" customModule="MoonToday" customModuleProvider="target" id="Blr-H0-hk1"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pn-mE-spY">
+                                        <rect key="frame" x="147" y="13.5" width="80" height="63"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="btn_day_off"/>
+                                        <connections>
+                                            <segue destination="BYZ-38-t0r" kind="custom" identifier="goAnimationToDaySegue" customClass="goLeftTransitionSegue" customModule="MoonToday" customModuleProvider="target" id="Qxp-Ng-Uox"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0S2-j2-JSF">
+                                        <rect key="frame" x="243" y="13.5" width="80" height="63"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="btn_ani_on"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.036042783410000001" green="0.059036590159999999" blue="0.15609470010000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view alpha="0.0" contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="OSH-o6-Dhu" customClass="GADBannerView">
+                                <rect key="frame" x="27" y="617" width="320" height="50"/>
+                                <color key="backgroundColor" red="0.036042783410000001" green="0.059036590159999999" blue="0.15609470010000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.036042783410000001" green="0.059036590159999999" blue="0.15609470010000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="OSH-o6-Dhu" firstAttribute="bottom" secondItem="tOK-pY-g9z" secondAttribute="bottom" id="TH8-z8-TYh"/>
+                            <constraint firstItem="OSH-o6-Dhu" firstAttribute="centerX" secondItem="N38-u3-YeX" secondAttribute="centerX" id="i9F-H9-VtT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tOK-pY-g9z"/>
+                    </view>
+                    <connections>
+                        <outlet property="animationButton" destination="0S2-j2-JSF" id="Ub0-tZ-bE5"/>
+                        <outlet property="bottomView" destination="OSH-o6-Dhu" id="eZe-V7-lCm"/>
+                        <outlet property="configButton" destination="zvN-7M-XLT" id="ImA-Hf-0fK"/>
+                        <outlet property="contentView" destination="BTb-kw-kk3" id="3er-aK-0uF"/>
+                        <outlet property="dateButton" destination="5A8-lz-km7" id="Rno-zC-rIn"/>
+                        <outlet property="dayButton" destination="3pn-mE-spY" id="IhS-vT-DZa"/>
+                        <outlet property="earthImageView" destination="pBQ-eA-tLV" id="mGy-dq-t54"/>
+                        <outlet property="earthView" destination="bh7-da-aEj" id="yEo-QX-17U"/>
+                        <outlet property="menuView" destination="zaE-xk-EFv" id="4fz-S6-60A"/>
+                        <outlet property="monthButton" destination="Cci-DD-CY0" id="C6i-x6-eX9"/>
+                        <outlet property="moonImageView" destination="IC6-BO-ir9" id="RLi-Xw-xpI"/>
+                        <outlet property="moonView" destination="eIb-F6-fnN" id="sW3-r0-8kD"/>
+                        <outlet property="selectButton" destination="zdK-Gk-xEi" id="9mG-Ya-ieJ"/>
+                        <outlet property="selectDatePicker" destination="Sk0-fP-hfu" id="mZc-hm-udP"/>
+                        <outlet property="sunImageView" destination="Hsf-xP-hEa" id="k4G-ij-iw1"/>
+                        <outlet property="sunRiseLabel" destination="d0c-qz-pOJ" id="KcL-bW-3i4"/>
+                        <outlet property="sunSetLabel" destination="y6m-vy-3oF" id="1Y5-lh-Zes"/>
+                        <outlet property="titleButton" destination="TCm-2g-ynz" id="aMd-eV-WPh"/>
+                        <outlet property="topView" destination="Xv6-KY-bfA" id="lrj-nk-pAG"/>
+                        <outlet property="universeImageView" destination="dnF-j9-lOf" id="u7g-YF-xfh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fca-0r-Ina" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1688.8" y="437.63118440779613"/>
+        </scene>
+        <!--Calendar View Controller-->
+        <scene sceneID="dq7-e3-o0R">
+            <objects>
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="DZn-lz-28q" customClass="CalendarViewController" customModule="MoonToday" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ylK-vM-ZWl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uno-zw-vvN">
+                                <rect key="frame" x="0.0" y="20" width="375" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jIj-GA-kQh">
+                                        <rect key="frame" x="129" y="15" width="117" height="39"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <state key="normal" title="Moon Today">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="titleButtonTouch:" destination="DZn-lz-28q" eventType="touchUpInside" id="4Hn-V9-X6e"/>
+                                            <action selector="titleButtonTouch:" destination="Wib-fS-LWF" eventType="touchUpInside" id="6Eb-U6-DGd"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DOb-Bn-A4o">
+                                        <rect key="frame" x="332" y="17.5" width="35" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="btn_menu"/>
+                                        <connections>
+                                            <action selector="configButtonTouch:" destination="DZn-lz-28q" eventType="touchUpInside" id="bgp-Wh-nkx"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.036042783410000001" green="0.059036590159999999" blue="0.15609470010000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="65T-o4-s6P">
+                                <rect key="frame" x="0.0" y="90" width="375" height="577"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" layoutMarginsFollowReadableWidth="YES" text="2017 MARCH" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4b4-mY-kqj">
+                                        <rect key="frame" x="122" y="8" width="131.5" height="26.5"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" tag="12" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5dW-Mf-UfF">
+                                        <rect key="frame" x="269.5" y="10.5" width="40" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
+                                        <size key="titleShadowOffset" width="1" height="1"/>
+                                        <state key="normal" image="btn_right"/>
+                                        <connections>
+                                            <action selector="monthChangeTouch:" destination="DZn-lz-28q" eventType="touchUpInside" id="uI5-Em-4At"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="13" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CNk-1f-Ybt">
+                                        <rect key="frame" x="84" y="10.5" width="40" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <inset key="imageEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="btn_left"/>
+                                        <connections>
+                                            <action selector="monthChangeTouch:" destination="DZn-lz-28q" eventType="touchUpInside" id="Bzg-IL-B1y"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.050980392159999999" green="0.15686274510000001" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view alpha="0.0" contentMode="scaleToFill" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="lLk-Nm-rGh" customClass="GADBannerView">
+                                <rect key="frame" x="27.5" y="617" width="320" height="50"/>
+                                <color key="backgroundColor" red="0.036042783410000001" green="0.059036590159999999" blue="0.15609470010000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hd9-AJ-lzm">
+                                <rect key="frame" x="0.0" y="20" width="375" height="89"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wau-4r-B0e">
+                                        <rect key="frame" x="51" y="13" width="80" height="63"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="btn_month_on"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vBt-E8-IXV">
+                                        <rect key="frame" x="147" y="13" width="80" height="63"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="btn_day_off"/>
+                                        <connections>
+                                            <segue destination="BYZ-38-t0r" kind="custom" identifier="goCalendarToDaySegue" customClass="goRightTransitionSegue" customModule="MoonToday" customModuleProvider="target" id="Ot4-L3-etU"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uQF-OP-smD">
+                                        <rect key="frame" x="243" y="13" width="80" height="63"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="btn_ani_off"/>
+                                        <connections>
+                                            <segue destination="KCp-4h-9rI" kind="custom" identifier="goCalendarToAnimationSegue" customClass="goRightTransitionSegue" customModule="MoonToday" customModuleProvider="target" id="rPN-Sx-Qag"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.036042783410000001" green="0.059036590159999999" blue="0.15609470010000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.036042783410000001" green="0.059036590159999999" blue="0.15609470010000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="lLk-Nm-rGh" firstAttribute="bottom" secondItem="5gW-zF-3wq" secondAttribute="bottom" id="Xoo-Ch-keF"/>
+                            <constraint firstItem="lLk-Nm-rGh" firstAttribute="centerX" secondItem="ylK-vM-ZWl" secondAttribute="centerX" id="mKZ-Kt-zw9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5gW-zF-3wq"/>
+                    </view>
+                    <connections>
+                        <outlet property="animationButton" destination="uQF-OP-smD" id="HXF-OQ-RyW"/>
+                        <outlet property="bottomView" destination="lLk-Nm-rGh" id="qhD-6r-2mj"/>
+                        <outlet property="calendarButton" destination="wau-4r-B0e" id="Z2d-Xr-A7V"/>
+                        <outlet property="configButton" destination="DOb-Bn-A4o" id="wUd-78-YPh"/>
+                        <outlet property="contentView" destination="65T-o4-s6P" id="ajG-YL-Goc"/>
+                        <outlet property="dayButton" destination="vBt-E8-IXV" id="U3Y-Pc-1xd"/>
+                        <outlet property="menuView" destination="hd9-AJ-lzm" id="Jue-qP-RzJ"/>
+                        <outlet property="nextMonth" destination="5dW-Mf-UfF" id="6EH-Or-vq5"/>
+                        <outlet property="prevMonth" destination="CNk-1f-Ybt" id="kDg-kO-LtU"/>
+                        <outlet property="titleButton" destination="jIj-GA-kQh" id="sL2-c2-0gc"/>
+                        <outlet property="topView" destination="uno-zw-vvN" id="he8-I8-wnJ"/>
+                        <outlet property="yearMonthLabel" destination="4b4-mY-kqj" id="6mL-8d-5sf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q0x-Cr-7E1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Wib-fS-LWF" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1629.5999999999999" y="-520.38980509745136"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="b_moon_16" width="192" height="192"/>
+        <image name="bg_sea" width="375" height="227"/>
+        <image name="bg_sky" width="375" height="320"/>
+        <image name="bg_universe" width="375" height="550"/>
+        <image name="btn_ani_off" width="80" height="63"/>
+        <image name="btn_ani_on" width="80" height="63"/>
+        <image name="btn_day_off" width="80" height="63"/>
+        <image name="btn_day_on" width="80" height="63"/>
+        <image name="btn_left" width="40" height="40"/>
+        <image name="btn_menu" width="35" height="35"/>
+        <image name="btn_month_off" width="80" height="63"/>
+        <image name="btn_month_on" width="80" height="63"/>
+        <image name="btn_right" width="40" height="40"/>
+        <image name="btn_select_up" width="18" height="18"/>
+        <image name="cloud1" width="405" height="61"/>
+        <image name="cloud2" width="405" height="68"/>
+        <image name="cloud3" width="405" height="93"/>
+        <image name="ico_earth" width="32" height="32"/>
+        <image name="ico_moon" width="20" height="20"/>
+        <image name="ico_sun" width="69" height="69"/>
+        <image name="sea_wave" width="375" height="76"/>
+        <image name="stars1" width="375" height="320"/>
+        <image name="stars2" width="375" height="320"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="qFO-PE-vkj"/>
+        <segue reference="r8E-vd-Cna"/>
+        <segue reference="Qxp-Ng-Uox"/>
+    </inferredMetricsTieBreakers>
+</document>

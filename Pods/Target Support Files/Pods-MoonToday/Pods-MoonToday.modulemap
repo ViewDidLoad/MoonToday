@@ -1,0 +1,6 @@
+framework module Pods_MoonToday {
+  umbrella header "Pods-MoonToday-umbrella.h"
+
+  export *
+  module * { export * }
+}
