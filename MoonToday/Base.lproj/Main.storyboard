@@ -172,7 +172,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="125" height="66.5"/>
                                                 <state key="normal" image="btn_month_off"/>
                                                 <connections>
-                                                    <segue destination="DZn-lz-28q" kind="custom" identifier="goDayToCalendarSegue" customClass="goLeftTransitionSegue" customModule="MoonToday" customModuleProvider="target" id="qFO-PE-vkj"/>
+                                                    <segue destination="DZn-lz-28q" kind="presentation" identifier="goDayToCalendarSegue" customClass="goLeftTransitionSegue" customModule="MoonToday" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="qFO-PE-vkj"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ShW-zd-GNs">
@@ -183,7 +183,7 @@
                                                 <rect key="frame" x="250" y="0.0" width="125" height="66.5"/>
                                                 <state key="normal" image="btn_ani_off"/>
                                                 <connections>
-                                                    <segue destination="KCp-4h-9rI" kind="custom" identifier="goDayToAnimationSegue" customClass="goRightTransitionSegue" customModule="MoonToday" customModuleProvider="target" id="r8E-vd-Cna"/>
+                                                    <segue destination="KCp-4h-9rI" kind="presentation" identifier="goDayToAnimationSegue" customClass="goRightTransitionSegue" customModule="MoonToday" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="r8E-vd-Cna"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -375,14 +375,14 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="125" height="66.5"/>
                                                 <state key="normal" image="btn_month_off"/>
                                                 <connections>
-                                                    <segue destination="DZn-lz-28q" kind="custom" identifier="goAnimationToCalendarSegue" customClass="goLeftTransitionSegue" customModule="MoonToday" customModuleProvider="target" id="Blr-H0-hk1"/>
+                                                    <segue destination="DZn-lz-28q" kind="presentation" identifier="goAnimationToCalendarSegue" customClass="goLeftTransitionSegue" customModule="MoonToday" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="Blr-H0-hk1"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pn-mE-spY">
                                                 <rect key="frame" x="125" y="0.0" width="125" height="66.5"/>
                                                 <state key="normal" image="btn_day_off"/>
                                                 <connections>
-                                                    <segue destination="BYZ-38-t0r" kind="custom" identifier="goAnimationToDaySegue" customClass="goLeftTransitionSegue" customModule="MoonToday" customModuleProvider="target" id="Qxp-Ng-Uox"/>
+                                                    <segue destination="BYZ-38-t0r" kind="presentation" identifier="goAnimationToDaySegue" customClass="goLeftTransitionSegue" customModule="MoonToday" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="Qxp-Ng-Uox"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0S2-j2-JSF">
@@ -551,14 +551,14 @@
                                                 <rect key="frame" x="125" y="0.0" width="125" height="66.5"/>
                                                 <state key="normal" image="btn_day_off"/>
                                                 <connections>
-                                                    <segue destination="BYZ-38-t0r" kind="custom" identifier="goCalendarToDaySegue" customClass="goRightTransitionSegue" customModule="MoonToday" customModuleProvider="target" id="Ot4-L3-etU"/>
+                                                    <segue destination="BYZ-38-t0r" kind="presentation" identifier="goCalendarToDaySegue" customClass="goRightTransitionSegue" customModule="MoonToday" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="Ot4-L3-etU"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uQF-OP-smD">
                                                 <rect key="frame" x="250" y="0.0" width="125" height="66.5"/>
                                                 <state key="normal" image="btn_ani_off"/>
                                                 <connections>
-                                                    <segue destination="KCp-4h-9rI" kind="custom" identifier="goCalendarToAnimationSegue" customClass="goRightTransitionSegue" customModule="MoonToday" customModuleProvider="target" id="rPN-Sx-Qag"/>
+                                                    <segue destination="KCp-4h-9rI" kind="presentation" identifier="goCalendarToAnimationSegue" customClass="goRightTransitionSegue" customModule="MoonToday" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="rPN-Sx-Qag"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -639,6 +639,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="Blr-H0-hk1"/>
         <segue reference="rPN-Sx-Qag"/>
-        <segue reference="Ot4-L3-etU"/>
+        <segue reference="Qxp-Ng-Uox"/>
     </inferredMetricsTieBreakers>
 </document>
