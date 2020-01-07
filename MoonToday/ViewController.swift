@@ -56,6 +56,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
     var onceShow:Bool = false // ViewDidAppear 한번만 실행하기 위한 변수
     // 광고 배너
     var bannerView: GADBannerView!
+    var bannerHeight: CGFloat = 0.0
+    var isAdShow = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -250,8 +252,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
     @IBAction func selectButtonTouch(_ sender: UIButton) {
         touchPlaySound()
         selectDatePicker.isHidden = !selectDatePicker.isHidden
-        datePickerTopMargin.constant = selectDatePicker.isHidden ? 0 : -selectDatePicker.bounds.height
-        dateBottomMargin.constant = selectDatePicker.isHidden ? 20 : selectDatePicker.bounds.height + 8
+        // 광고가 있을 때와 없을때
+        if isAdShow {
+            datePickerTopMargin.constant = selectDatePicker.isHidden ? 0 : -(selectDatePicker.bounds.height + bannerHeight + 20)
+            dateBottomMargin.constant = selectDatePicker.isHidden ? bannerHeight + 20 : selectDatePicker.bounds.height + 8 + bannerHeight + 20
+        } else {
+            datePickerTopMargin.constant = selectDatePicker.isHidden ? 0 : -selectDatePicker.bounds.height
+            dateBottomMargin.constant = selectDatePicker.isHidden ? 20 : selectDatePicker.bounds.height + 8
+        }
+        
         UIView.animate(withDuration: 0.3) {
             self.loadViewIfNeeded()
         }
@@ -374,6 +383,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
     // GADBannerViewDelegate
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         print("adViewDidReceivedAD")
+        // 광고가 표출되면 날짜 선택을 광고 위로 올린다.
+        bannerHeight = bannerView.bounds.height
+        dateBottomMargin.constant = bannerHeight + 20
+        isAdShow = true
         addBannerViewToView(bannerView)
     }
     
