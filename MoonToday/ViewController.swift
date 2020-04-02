@@ -335,14 +335,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
         selectDate = sender.date // 선택한 날짜 변수에 입력
         locationManager.startUpdatingLocation() // 좌표 가져오기 시동
         selectDateMoonImageChanged(date: selectDate)
-        DispatchQueue.main.async {
-            // 날짜 선택 피커 아래로 감춰짐.
-            UIView.animate(withDuration: 0.1, delay: 0.01, options: [.curveEaseInOut], animations: {
-                self.selectDatePicker.frame.origin.y = UIScreen.main.bounds.size.height
-            }, completion: { finished in
-                self.selectDatePicker.isHidden = true
-            })
-        }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
