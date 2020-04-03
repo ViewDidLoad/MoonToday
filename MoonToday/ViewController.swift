@@ -85,8 +85,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
         locationManager.requestWhenInUseAuthorization() // 항상 실행되었을 때만 위치 좌표를 가져옴
         locationManager.startUpdatingLocation()
         // 날짜에 달 이미지 맞추기
-        let phase = nCalc.moonPhase(date: selectDate).phase
-        let lunarDay = nCalc.phaseTolunarday(phase: phase)
+        //let phase = nCalc.moonPhase(date: selectDate).phase
+        //let lunarDay = nCalc.phaseTolunarday(phase: phase)
+        //moonImageView.image = UIImage(named: "b_moon_\(lunarDay)")
+        let nMoon = NemesisMoon()
+        let julian = nMoon.solarToJulian(date: selectDate)
+        let sunLng = nMoon.julianToSunLongitude(julian: julian)
+        let moonLng = nMoon.julianToMoonLongitude(julian: julian)
+        let lunar = nMoon.longitudeToLunarDay(sunLng: sunLng, moonLng: moonLng)
+        let lunarDay = String(format: "%02d", lunar)
         moonImageView.image = UIImage(named: "b_moon_\(lunarDay)")
         // DatePicker 설정
         selectDatePicker.isHidden = true
@@ -312,16 +319,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
     }
     
     fileprivate func selectDateMoonImageChanged(date: Date) {
-        DispatchQueue.global().async {
-            let phase = nCalc.moonPhase(date: date).phase
-            let lunarDay = nCalc.phaseTolunarday(phase: phase)
+        //
+        let nMoon = NemesisMoon()
+        let julian = nMoon.solarToJulian(date: date)
+        let sunLng = nMoon.julianToSunLongitude(julian: julian)
+        let moonLng = nMoon.julianToMoonLongitude(julian: julian)
+        let lunar = nMoon.longitudeToLunarDay(sunLng: sunLng, moonLng: moonLng)
+        let lunarDay = String(format: "%02d", lunar)
+        //DispatchQueue.global().async {
+            //let phase = nCalc.moonPhase(date: date).phase
+            //let lunarDay = nCalc.phaseTolunarday(phase: phase)
             DispatchQueue.main.async {
                 UIView.animate(withDuration: 0.1, delay: 0.01, options: [.curveEaseInOut], animations: {
                     self.moonImageView.image = UIImage(named: "b_moon_\(lunarDay)")
                     self.dateButton.setTitle(self.dateFormatter.string(from: date), for: .normal)
                 }, completion: nil)
             }
-        }
+        //}
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.1, delay: 0.01, usingSpringWithDamping: 0.1, initialSpringVelocity: 5, options: [.curveLinear], animations: {
                 self.dateButton.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
@@ -335,29 +349,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
         selectDate = sender.date // 선택한 날짜 변수에 입력
         locationManager.startUpdatingLocation() // 좌표 가져오기 시동
         selectDateMoonImageChanged(date: selectDate)
-        /*/ NemesisMoon data
-        let nMoon = NemesisMoon()
-        let julian = nMoon.solarToJulian(date: selectDate)
-        let df = DateFormatter()
-        df.dateFormat = "MMdd"
-        let date_str = df.string(from: selectDate)
-        let sunLng = nMoon.julianToSunLongitude(julian: julian)
-        var moonLng = nMoon.julianToMoonLongitude(julian: julian)
-        // 태양 황경 보다 달 황경이 작을 때는 360을 더하자
-        moonLng = moonLng < sunLng ? moonLng + 360.0 : moonLng
-        let diff = fabs(sunLng - moonLng)
-        let str = String(format: "%@, %.2f, %.2f, %.2f, %.2f", date_str, julian, sunLng, moonLng, diff)
-        print(str)
-        // */
-        let nMoon = NemesisMoon()
-        let julian = nMoon.solarToJulian(date: selectDate)
-        let df = DateFormatter()
-        df.dateFormat = "MMdd"
-        let date_str = df.string(from: selectDate)
-        let sunLng = nMoon.julianToSunLongitude(julian: julian)
-        let moonLng = nMoon.julianToMoonLongitude(julian: julian)
-        let lunar = nMoon.longitudeToLunarDay(sunLng: sunLng, moonLng: moonLng)
-        print("\(date_str) -> \(lunar)")
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

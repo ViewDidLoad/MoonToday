@@ -145,9 +145,15 @@ class CalendarViewController: UIViewController  {
                     }
                     // moon image
                     dateComp.day = day
-                    let moonDate = Calendar.current.date(from: dateComp)
-                    let phase = nCalc.moonPhase(date: moonDate!).phase
-                    let lunarDay = nCalc.phaseTolunarday(phase: phase)
+                    let moonDate = Calendar.current.date(from: dateComp)!
+                    //let phase = nCalc.moonPhase(date: moonDate!).phase
+                    //let lunarDay = nCalc.phaseTolunarday(phase: phase)
+                    let nMoon = NemesisMoon()
+                    let julian = nMoon.solarToJulian(date: moonDate)
+                    let sunLng = nMoon.julianToSunLongitude(julian: julian)
+                    let moonLng = nMoon.julianToMoonLongitude(julian: julian)
+                    let lunar = nMoon.longitudeToLunarDay(sunLng: sunLng, moonLng: moonLng)
+                    let lunarDay = String(format: "%02d", lunar)
                     let moonImage = UIImage(named: "s_moon_\(lunarDay)")
                     let moonDelta = delta / 2
                     let imageFrame = CGRect(x: moonDelta, y: delta + moonDelta, width: width - delta, height: width - delta)
