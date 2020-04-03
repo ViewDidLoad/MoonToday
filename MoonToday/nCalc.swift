@@ -337,7 +337,6 @@ struct nCalc {
 }
 
 class NemesisMoon {
-    // 테스트 결과 이것은 4일 정도 오차가 난다
     func rev(x: Double) -> Double {
         var rv = x - trunc(x / 360.0) * 360.0
         if rv < 0 {
@@ -354,49 +353,16 @@ class NemesisMoon {
         return radian * 180 / Double.pi
     }
     
-    //func solarToJulian(year: Int32, month: Int8, day: Int8, hour: Int8, minute: Int8, second: Int8) -> Double {
     func solarToJulian(date: Date) -> Double {
-        let calendar = Calendar.current
-        let year = calendar.component(.year, from: date)
-        let month = calendar.component(.month, from: date)
-        let day = calendar.component(.day, from: date)
-        let hour = calendar.component(.hour, from: date)
-        let minute = calendar.component(.minute, from: date)
-        let second = calendar.component(.second, from: date)
-        
-        var Y:Double = Double(year)
-        var M:Double = Double(month)
-        
-        if month < 3 {
-            Y -= 1.0
-            M += 12.0
-        }
-        
-        let HMS:Double = Double(hour)/24.0 + Double(minute)/1440.0 + Double(second)/86400.0
-        
-        if ((year > 1582) || (year == 1582) && (month > 10)) || ((year == 1582) && (month == 10) && (day >= 15))
-        {
-            // 1582.10.15부터 그레고리력이다.
-            let A:Double = Double(Y) / 100.0
-            let B:Double = Double(M) / 4.0
-            let YMD:Double = trunc(365.25 * Y + 2.0 - A + B) + trunc(30.6 * M - 0.4) + Double(day)
-            return (YMD + HMS + 1721026)
-        }
-        else if ((year < 1582) || (year == 1582) && (month < 10)) || ((year == 1582) && (month == 10) && (day <= 4))
-        {
-            // 1582.10.4 이전은 율리우스력이다.
-            let YMD:Double = trunc(365.25 * Y) + trunc(30.6 * M - 0.4) + Double(day)
-            return (YMD + HMS + 1721026)
-        }
-        else
-        {
-            // 1582.10.5 ~ 1582.10.14 실제로 없는 날짜 입니다.
-            return -1
-        }
+        let daySeconds: Double = 60 * 60 * 24
+        let J1970 = 2440588.0
+        // localTime -> 0.75, 한국기준 +9 = 9/12 = 0.75, 그리니치 기준
+        let localTime = Double(TimeZone.current.secondsFromGMT() / 3600) / 12.0
+        return date.timeIntervalSince1970/daySeconds + localTime + J1970
     }
     
     func julianToSunLongitude(julian:Double) -> Double {
-        // UT 기준, 서울은 9시간 빠름 0.375
+        // UT 기준, 서울은 9시간 빠름
         // Timezone을 가져와서 UT로 변경해 줄것
         let D:Double = julian - 2451544.0
         let SUN_W:Double = 282.9404 + 0.0000470935 * D
@@ -457,6 +423,14 @@ class NemesisMoon {
         let P12:Double = 0.011 * sin(degreeToRadian(degree: MOON_M) - 4 * degreeToRadian(degree: MOON_D))
         
         return MOON_V + P1 + P2 + P3 + P4 + P5 + P6 + P7 + P8 + P9 + P10 + P11 + P12
+    }
+    
+    func longitudeToLunarDay(sunLng: Double, moonLng: Double) -> Int {
+        var lunarDay = 0
+        let difference = fabs(sunLng - moonLng)
+        // 360도를 2로 나누면 180도 이고 이를 15로 나누면 12도이다. 각 값의 6도씩 빼거나 더하면 구간을 구할 수 있다.
+        // 0 ~ 180까지는 달이 커가고 있고 180~ 360은 달이 작아지고 있음
+        return lunarDay
     }
 }
 

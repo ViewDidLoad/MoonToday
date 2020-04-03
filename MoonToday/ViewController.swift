@@ -335,6 +335,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
         selectDate = sender.date // 선택한 날짜 변수에 입력
         locationManager.startUpdatingLocation() // 좌표 가져오기 시동
         selectDateMoonImageChanged(date: selectDate)
+        // NemesisMoon data
+        let nMoon = NemesisMoon()
+        let julian = nMoon.solarToJulian(date: selectDate)
+        let df = DateFormatter()
+        df.dateFormat = "MMdd"
+        let date_str = df.string(from: selectDate)
+        let sunLng = nMoon.julianToSunLongitude(julian: julian)
+        var moonLng = nMoon.julianToMoonLongitude(julian: julian)
+        // 태양 황경 보다 달 황경이 작을 때는 360을 더하자
+        moonLng = moonLng < sunLng ? moonLng + 360.0 : moonLng
+        let diff = fabs(sunLng - moonLng)
+        let str = String(format: "%@, %.2f, %.2f, %.2f, %.2f", date_str, julian, sunLng, moonLng, diff)
+        print(str)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
