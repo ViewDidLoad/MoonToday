@@ -430,6 +430,11 @@ class NemesisMoon {
         let difference = fabs(sunLng - moonLng)
         // 360도를 2로 나누면 180도 이고 이를 15로 나누면 12도이다. 각 값의 6도씩 빼거나 더하면 구간을 구할 수 있다.
         // 0 ~ 180까지는 달이 커가고 있고 180~ 360은 달이 작아지고 있음
+        // 태양 황경 보다 달 황경이 작을 때는 360을 더하자
+        let mLongitude = moonLng < sunLng ? moonLng + 360.0 : moonLng
+        let diff = fabs(sunLng - mLongitude)
+        print(diff)
+        
         return lunarDay
     }
 }
