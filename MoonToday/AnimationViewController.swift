@@ -161,7 +161,6 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate  {
     
     fileprivate func showAnimation() {
         // 애니메이션 시작, 입력 이벤트 중지
-        timerPlaySound()
         animating = true
         // 날짜로 태양과 달의 황경을 계산, rightAscesion 황경으로 라디안 값임.
         let days = nCalc.daysSinceJan12000(date: selectDate)
@@ -197,7 +196,6 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate  {
                     } else {
                         timer.invalidate()
                         self.animating = false
-                        self.timerStopSound()
                     }
                 }
             }
@@ -211,8 +209,6 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate  {
     
     @IBAction func titleButtonTouch(_ sender: UIButton) {
         if !animating {
-            // 오늘 날짜로 변경
-            touchPlaySound()
             selectDatePicker.date = Date()
             selectDatePickerChanged(selectDatePicker)
             UIView.animate(withDuration: 1.2, delay: 0, usingSpringWithDamping: 0.1, initialSpringVelocity: 5, options: [.curveLinear], animations: {
@@ -225,7 +221,6 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate  {
     
     @IBAction func configButtonTouch(_ sender: UIButton) {
         if !animating {
-            touchPlaySound()
             menuView.isHidden = !menuView.isHidden
             menuViewTopMargin.constant = menuView.isHidden ? 0 : topView.bounds.height
             UIView.animate(withDuration: 0.3) {
@@ -236,7 +231,6 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate  {
     
     @IBAction func selectButtonTouch(_ sender: UIButton) {
         if !animating {
-            touchPlaySound()
             selectDatePicker.isHidden = !selectDatePicker.isHidden
             datePickerTopMargin.constant = selectDatePicker.isHidden ? 0 : -selectDatePicker.bounds.height
             dateBottomMargin.constant = selectDatePicker.isHidden ? 20 : selectDatePicker.bounds.height + 8
@@ -248,7 +242,6 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate  {
     
     @objc func handleSwipe(sender: UISwipeGestureRecognizer) {
         print("swipe -> \(sender.direction), animating -> \(animating)")
-        touchPlaySound()
         if !animating {
             var dateComp = DateComponents()
             switch sender.direction {
@@ -306,59 +299,17 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate  {
         locationManager.stopUpdatingLocation() // 갱신 했으니 좌표 가져오기 중단
     }
     
-    func touchPlaySound() {
-        guard let url = Bundle.main.url(forResource: "touch", withExtension: "mp3") else { return }
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category(rawValue: convertFromAVAudioSessionCategory(AVAudioSession.Category.playback)))
-            try AVAudioSession.sharedInstance().setActive(true)
-            touchPlayer = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
-            guard let player = touchPlayer else { return }
-            player.play()
-        } catch let error {
-            print(error.localizedDescription)
-        }
-    }
-    
-    func timerPlaySound() {
-        guard let url = Bundle.main.url(forResource: "ticking", withExtension: "mp3") else { return }
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category(rawValue: convertFromAVAudioSessionCategory(AVAudioSession.Category.playback)))
-            try AVAudioSession.sharedInstance().setActive(true)
-            timerPlayer = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
-            guard let player = timerPlayer else { return }
-            player.play()
-        } catch let error {
-            print(error.localizedDescription)
-        }
-    }
-    
-    func timerStopSound() {
-        guard let url = Bundle.main.url(forResource: "ticking", withExtension: "mp3") else { return }
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category(rawValue: convertFromAVAudioSessionCategory(AVAudioSession.Category.playback)))
-            try AVAudioSession.sharedInstance().setActive(true)
-            timerPlayer = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
-            guard let player = timerPlayer else { return }
-            player.stop()
-        } catch let error {
-            print(error.localizedDescription)
-        }
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goAnimationToCalendarSegue" {
-            touchPlaySound()
             let dest = segue.destination as! CalendarViewController
             dest.selectDate = selectDate
         } else if segue.identifier == "goAnimationToDaySegue" {
-            touchPlaySound()
             let dest = segue.destination as! ViewController
             dest.selectDate = selectDate
         }
     }
     
 }
-
 
 // Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
