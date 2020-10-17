@@ -176,7 +176,6 @@ class CalendarViewController: UIViewController  {
     }
     
     @IBAction func titleButtonTouch(_ sender: UIButton) {
-        touchPlaySound()
         // 오늘 날짜로 변경
         selectDate = Date()
         showCalendar()
@@ -188,7 +187,6 @@ class CalendarViewController: UIViewController  {
     }
     
     @IBAction func configButtonTouch(_ sender: UIButton) {
-        touchPlaySound()
         print("menuViewTopMargin \(menuViewTopMargin.constant), \(topView.bounds.height)")
         menuView.isHidden = !menuView.isHidden
         menuViewTopMargin.constant = menuView.isHidden ? 0 : topView.bounds.height
@@ -198,8 +196,6 @@ class CalendarViewController: UIViewController  {
     }
     
     @IBAction func monthChangeTouch(_ sender: UIButton) {
-        //print("touch -> \(sender.tag)")
-        touchPlaySound()
         var dateComp = Calendar.current.dateComponents([.year, .month], from: selectDate!)
         dateComp.month = sender.tag == 12 ? dateComp.month! + 1 : dateComp.month! - 1
         selectDate = Calendar.current.date(from: dateComp)
@@ -221,7 +217,6 @@ class CalendarViewController: UIViewController  {
     
     @objc func handleSwipe(sender: UISwipeGestureRecognizer) {
         print(sender.direction)
-        touchPlaySound()
         var dateComp = DateComponents()
         switch sender.direction {
         case [.left]:
@@ -239,33 +234,17 @@ class CalendarViewController: UIViewController  {
         showCalendar()
     }
     
-    func touchPlaySound() {
-        guard let url = Bundle.main.url(forResource: "touch", withExtension: "mp3") else { return }
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category(rawValue: convertFromAVAudioSessionCategory(AVAudioSession.Category.playback)))
-            try AVAudioSession.sharedInstance().setActive(true)
-            touchPlayer = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
-            guard let player = touchPlayer else { return }
-            player.play()
-        } catch let error {
-            print(error.localizedDescription)
-        }
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goCalendarToDaySegue" {
-            touchPlaySound()
             let dest = segue.destination as! ViewController
             dest.selectDate = selectDate! // 기존 마지막 값을 사용하는게 더 낫지 않을까?
         } else if segue.identifier == "goCalendarToAnimationSegue" {
-            touchPlaySound()
             let dest = segue.destination as! AnimationViewController
             dest.selectDate = selectDate!
         }
     }
     
 }
-
 
 // Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
