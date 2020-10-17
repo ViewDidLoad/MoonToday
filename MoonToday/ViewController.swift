@@ -103,7 +103,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
         selectDatePicker.calendar = Calendar.current
         selectDatePicker.layer.zPosition = 4
         // swipe gesture
-        let directions:[UISwipeGestureRecognizerDirection] = [.down, .up, .left, .right]
+        let directions:[UISwipeGestureRecognizer.Direction] = [.down, .up, .left, .right]
         for direct in directions {
             let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
             swipeGesture.direction = direct
@@ -235,8 +235,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
     }
     
     @IBAction func titleButtonTouch(_ sender: UIButton) {
-        // 오늘 날짜로 변경
-        touchPlaySound()
         selectDatePicker.date = Date()
         selectDatePickerChanged(selectDatePicker)
         UIView.animate(withDuration: 1.2, delay: 0, usingSpringWithDamping: 0.1, initialSpringVelocity: 5, options: [.curveLinear], animations: {
@@ -247,7 +245,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
     }
     
     @IBAction func configButtonTouch(_ sender: UIButton) {
-        touchPlaySound()
         menuView.isHidden = !menuView.isHidden
         menuViewTopMargin.constant = menuView.isHidden ? 0 : topView.bounds.height
         UIView.animate(withDuration: 0.3) {
@@ -257,7 +254,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
     
     
     @IBAction func selectButtonTouch(_ sender: UIButton) {
-        touchPlaySound()
+        //touchPlaySound()
         selectDatePicker.isHidden = !selectDatePicker.isHidden
         // 광고가 있을 때와 없을때
         if isAdShow {
@@ -275,7 +272,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
     
     @objc func handleSwipe(sender: UISwipeGestureRecognizer) {
         print(sender.direction)
-        swipePlaySound()
+        //swipePlaySound()
         var dateComp = DateComponents()
         let x = moonImageView.frame.origin.x
         let y = moonImageView.frame.origin.y
@@ -360,32 +357,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
         locationManager.stopUpdatingLocation() // 갱신 했으니 좌표 가져오기 중단
     }
     
-    func touchPlaySound() {
-        guard let url = Bundle.main.url(forResource: "touch", withExtension: "mp3") else { return }
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-            try AVAudioSession.sharedInstance().setActive(true)
-            touchPlayer = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
-            guard let player = touchPlayer else { return }
-            player.play()
-        } catch let error {
-            print(error.localizedDescription)
-        }
-    }
-    
-    func swipePlaySound() {
-        guard let url = Bundle.main.url(forResource: "swipe", withExtension: "mp3") else { return }
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-            try AVAudioSession.sharedInstance().setActive(true)
-            swipePlayer = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
-            guard let player = swipePlayer else { return }
-            player.play()
-        } catch let error {
-            print(error.localizedDescription)
-        }
-    }
-    
     // GADBannerViewDelegate
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         print("adViewDidReceivedAD")
@@ -414,14 +385,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goDayToCalendarSegue" {
-            touchPlaySound()
             let dest = segue.destination as! CalendarViewController
             dest.selectDate = selectDate
         } else if segue.identifier == "goDayToAnimationSegue" {
-            touchPlaySound()
             let dest = segue.destination as! AnimationViewController
             dest.selectDate = selectDate
         }
     }
 }
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
+	return input.rawValue
+}

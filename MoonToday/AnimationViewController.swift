@@ -72,7 +72,7 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate  {
         selectDatePicker.calendar = Calendar.current
         selectDatePicker.layer.zPosition = 4
         // swipe gesture
-        let directions:[UISwipeGestureRecognizerDirection] = [.down, .up, .left, .right]
+        let directions:[UISwipeGestureRecognizer.Direction] = [.down, .up, .left, .right]
         for direct in directions {
             let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
             swipeGesture.direction = direct
@@ -82,7 +82,7 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate  {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if isBeingPresented || isMovingToParentViewController // 제목 표시 근데 왜 두번 실행될까? 이 조건을 넣으면 한번만 실행된다.
+        if isBeingPresented || isMovingToParent // 제목 표시 근데 왜 두번 실행될까? 이 조건을 넣으면 한번만 실행된다.
         {
             print("viewDidAppear : \(String(describing: selectDate))")
             // 백그라운드 서클 생성
@@ -98,7 +98,7 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate  {
             circleLayer_1.strokeColor = UIColor.gray.cgColor
             circleLayer_1.lineWidth = 1.0
             circleLayer_1.lineDashPattern = [0.0, 8.0]
-            circleLayer_1.lineCap = kCALineCapRound
+            circleLayer_1.lineCap = CAShapeLayerLineCap.round
             circleView.layer.addSublayer(circleLayer_1)
             let radius_2 = ((width / 2) * 0.7) - (earthImageView.frame.size.height / 2) // 안쪽 지구가 회전하는 점선
             let circle_path_2 = UIBezierPath(arcCenter: circleView.center, radius: radius_2, startAngle: CGFloat(0), endAngle: CGFloat(Double.pi * 2), clockwise: true)
@@ -108,7 +108,7 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate  {
             circleLayer_2.strokeColor = UIColor.blue.cgColor
             circleLayer_2.lineWidth = 1.0
             circleLayer_2.lineDashPattern = [0.0, 8.0]
-            circleLayer_2.lineCap = kCALineCapRound
+            circleLayer_2.lineCap = CAShapeLayerLineCap.round
             circleView.layer.addSublayer(circleLayer_2)
             // 태양을 백그라운드 서클 이미지 중앙에 배치
             sunImageView.bounds.size = CGSize(width: width * 0.184, height: width * 0.184)
@@ -129,7 +129,7 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate  {
             sunLineLayer.strokeColor = UIColor.yellow.cgColor
             sunLineLayer.lineWidth = 1.0
             sunLineLayer.lineDashPattern = [0.0, 8.0]
-            sunLineLayer.lineCap = kCALineCapSquare
+            sunLineLayer.lineCap = CAShapeLayerLineCap.square
             earthView.layer.addSublayer(sunLineLayer)
             // 지구 주위를 도는 달
             moonView.frame.size.height = width * 0.3
@@ -148,7 +148,7 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate  {
             earthLineLayer.strokeColor = UIColor.gray.cgColor
             earthLineLayer.lineWidth = 1.0
             earthLineLayer.lineDashPattern = [0.0, 8.0]
-            earthLineLayer.lineCap = kCALineCapSquare
+            earthLineLayer.lineCap = CAShapeLayerLineCap.square
             moonView.layer.addSublayer(earthLineLayer)
             // 태양 이미지를 가장 앞에
             sunImageView.layer.zPosition = moonImageView.layer.zPosition + 0.01
@@ -309,7 +309,7 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate  {
     func touchPlaySound() {
         guard let url = Bundle.main.url(forResource: "touch", withExtension: "mp3") else { return }
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category(rawValue: convertFromAVAudioSessionCategory(AVAudioSession.Category.playback)))
             try AVAudioSession.sharedInstance().setActive(true)
             touchPlayer = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
             guard let player = touchPlayer else { return }
@@ -322,7 +322,7 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate  {
     func timerPlaySound() {
         guard let url = Bundle.main.url(forResource: "ticking", withExtension: "mp3") else { return }
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category(rawValue: convertFromAVAudioSessionCategory(AVAudioSession.Category.playback)))
             try AVAudioSession.sharedInstance().setActive(true)
             timerPlayer = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
             guard let player = timerPlayer else { return }
@@ -335,7 +335,7 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate  {
     func timerStopSound() {
         guard let url = Bundle.main.url(forResource: "ticking", withExtension: "mp3") else { return }
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category(rawValue: convertFromAVAudioSessionCategory(AVAudioSession.Category.playback)))
             try AVAudioSession.sharedInstance().setActive(true)
             timerPlayer = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
             guard let player = timerPlayer else { return }
@@ -359,3 +359,8 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate  {
     
 }
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
+	return input.rawValue
+}

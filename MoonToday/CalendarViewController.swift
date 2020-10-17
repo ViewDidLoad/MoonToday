@@ -45,7 +45,7 @@ class CalendarViewController: UIViewController  {
         yearMonthLabel.text = dateFormat.string(from: selectDate!)
         yearMonthLabel.textColor = textColor
         // swipe gesture
-        let directions:[UISwipeGestureRecognizerDirection] = [.down, .up, .left, .right]
+        let directions:[UISwipeGestureRecognizer.Direction] = [.down, .up, .left, .right]
         for direct in directions {
             let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
             swipeGesture.direction = direct
@@ -74,7 +74,7 @@ class CalendarViewController: UIViewController  {
         contentView.frame = CGRect(x: 0, y: topViewHeight, width: UIScreen.main.bounds.size.width, height: contentViewHeight)
         // */
         
-        if isBeingPresented || isMovingToParentViewController // 제목 표시 근데 왜 두번 실행될까? 이 조건을 넣으면 한번만 실행된다.
+        if isBeingPresented || isMovingToParent // 제목 표시 근데 왜 두번 실행될까? 이 조건을 넣으면 한번만 실행된다.
         {
             //print("viewDidAppear : \(todayDay)")
             showCalendar()
@@ -242,7 +242,7 @@ class CalendarViewController: UIViewController  {
     func touchPlaySound() {
         guard let url = Bundle.main.url(forResource: "touch", withExtension: "mp3") else { return }
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category(rawValue: convertFromAVAudioSessionCategory(AVAudioSession.Category.playback)))
             try AVAudioSession.sharedInstance().setActive(true)
             touchPlayer = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
             guard let player = touchPlayer else { return }
@@ -266,3 +266,8 @@ class CalendarViewController: UIViewController  {
     
 }
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
+	return input.rawValue
+}
