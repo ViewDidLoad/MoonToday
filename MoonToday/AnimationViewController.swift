@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreLocation
-import AVFoundation
 
 class AnimationViewController: UIViewController, CLLocationManagerDelegate  {
     
@@ -37,8 +36,6 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate  {
     @IBOutlet weak var selectDatePicker: UIDatePicker!
     @IBOutlet weak var datePickerTopMargin: NSLayoutConstraint!
     
-    var touchPlayer:AVAudioPlayer?
-    var timerPlayer:AVAudioPlayer?
     let dateFormatter = DateFormatter()
     let timeFormatter = DateFormatter()
     var selectDate = Date()
@@ -309,9 +306,4 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate  {
         }
     }
     
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
-	return input.rawValue
 }

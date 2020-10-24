@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreLocation
-import AVFoundation
 import GoogleMobileAds
 
 class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerViewDelegate {
@@ -42,8 +41,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
     @IBOutlet weak var selectDatePicker: UIDatePicker!
     @IBOutlet weak var datePickerTopMargin: NSLayoutConstraint!
     
-    var touchPlayer:AVAudioPlayer?
-    var swipePlayer:AVAudioPlayer?
     let dateFormatter = DateFormatter()
     let timeFormatter = DateFormatter()
     var selectDate = Date()
@@ -392,10 +389,4 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
             dest.selectDate = selectDate
         }
     }
-}
-
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
-	return input.rawValue
 }

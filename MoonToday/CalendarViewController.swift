@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AVFoundation
 
 class CalendarViewController: UIViewController  {
     
@@ -26,7 +25,6 @@ class CalendarViewController: UIViewController  {
     @IBOutlet weak var nextMonth: UIButton!
     @IBOutlet weak var prevMonth: UIButton!
     
-    var touchPlayer:AVAudioPlayer?
     var selectDate:Date?
     let todayDay = Calendar.current.component(.day, from: Date())
     let dateFormat = DateFormatter()
@@ -53,32 +51,9 @@ class CalendarViewController: UIViewController  {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        /*/ 화면크기 여기서 코드로 조정할 것, autolayout 사용하니까 아이패드랑 큰화면에서 전부 깨짐
-        let delta:CGFloat = 8.0
-        // topView
-        let topViewHeight = UIScreen.main.bounds.size.height * 0.1
-        topView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: topViewHeight)
-        // titleButton
-        titleButton.center = topView.center
-        let configButtonWidth = topViewHeight - delta
-        configButton.frame = CGRect(x: UIScreen.main.bounds.size.width - configButtonWidth, y: delta, width: configButtonWidth, height: configButtonWidth)
-        // menuView
-        menuView.frame.size.width = UIScreen.main.bounds.size.width
-        dayButton.frame.origin.x = (UIScreen.main.bounds.size.width / 2) - (dayButton.frame.size.width / 2)
-        calendarButton.frame.origin.x = dayButton.frame.origin.x - (delta * 3) - calendarButton.frame.size.width
-        animationButton.frame.origin.x = dayButton.frame.origin.x + dayButton.frame.size.width + (delta * 3)
-        // contentView
-        let contentViewHeight = UIScreen.main.bounds.size.height * 0.9
-        contentView.frame = CGRect(x: 0, y: topViewHeight, width: UIScreen.main.bounds.size.width, height: contentViewHeight)
-        // */
-        
-        if isBeingPresented || isMovingToParent // 제목 표시 근데 왜 두번 실행될까? 이 조건을 넣으면 한번만 실행된다.
-        {
-            //print("viewDidAppear : \(todayDay)")
-            showCalendar()
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        showCalendar()
     }
     
     fileprivate func showCalendar() {
@@ -244,9 +219,4 @@ class CalendarViewController: UIViewController  {
         }
     }
     
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
-	return input.rawValue
 }
