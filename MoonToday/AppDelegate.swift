@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // 구글 adMob 광고 모듈
         GADMobileAds.sharedInstance().start(completionHandler: nil)
+        //GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = ["855234fcd08b0733d55d5803d54db883"]
         
         return true
     }

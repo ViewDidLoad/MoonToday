@@ -77,6 +77,21 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate  {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // 숨 쉬는 애니메이션
+        UIView.animate(withDuration: 2.5, delay: 0.2, options: [.repeat, .autoreverse]) {
+            self.sunImageView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            self.earthImageView.transform = CGAffineTransform(scaleX: 2.0, y: 2.0)
+            self.moonImageView.transform = CGAffineTransform(scaleX: 1.8, y: 1.8)
+        } completion: { (finished) in
+            self.sunImageView.transform = CGAffineTransform.identity
+            self.earthImageView.transform = CGAffineTransform.identity
+            self.moonImageView.transform = CGAffineTransform.identity
+        }
+
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if isBeingPresented || isMovingToParent // 제목 표시 근데 왜 두번 실행될까? 이 조건을 넣으면 한번만 실행된다.
@@ -154,7 +169,6 @@ class AnimationViewController: UIViewController, CLLocationManagerDelegate  {
             }
         }
     }
-    
     
     fileprivate func showAnimation() {
         // 애니메이션 시작, 입력 이벤트 중지

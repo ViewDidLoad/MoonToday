@@ -112,7 +112,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
         bannerView.rootViewController = self
         bannerView.delegate = self
         bannerView.load(GADRequest())
-        GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = ["855234fcd08b0733d55d5803d54db883"]
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -224,7 +223,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
         boatImageView.frame.origin = CGPoint(x: UIScreen.main.bounds.size.width, y: seawaveImageView.frame.origin.y - (boatImageView.bounds.size.height * 0.5))
         contentView.addSubview(boatImageView)
         
-        UIView.animate(withDuration: duration, delay: 0.5, options: [.curveEaseInOut], animations: {
+        UIView.animate(withDuration: duration, delay: 0.5, options: [.curveEaseInOut, .repeat], animations: {
             boatImageView.frame.origin.x = -UIScreen.main.bounds.size.width
         }, completion: { finished in
             boatImageView.removeFromSuperview()
