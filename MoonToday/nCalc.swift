@@ -32,6 +32,17 @@
  */
 
 import CoreLocation
+import UIKit
+
+// 폰트 및 색상
+let fontName = "AppleSDGothicNeo-Regular"
+let enableTextColor = UIColor(displayP3Red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
+let enableButtonColor = UIColor(red: 254/255, green: 200/255, blue: 0, alpha: 1.0)
+let enableBorderColor = UIColor(red: 55/255, green: 55/255, blue: 55/255, alpha: 1.0)
+
+let disableTextColor = UIColor(displayP3Red: 119/255, green: 119/255, blue: 119/255, alpha: 1.0)
+let disableButtonColor = UIColor(red: 215/255, green: 215/255, blue: 215/255, alpha: 1.0)
+let disableBorderColor = UIColor(red: 112/255, green: 112/255, blue: 112/255, alpha: 1.0)
 
 struct nCalc {
     

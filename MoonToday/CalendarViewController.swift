@@ -33,7 +33,7 @@ class CalendarViewController: UIViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //print("viewDidLoad")
+        print("calendarVC viewDidLoad")
         // zposition config
         topView.layer.zPosition = 1.02
         menuView.layer.zPosition = 1.01
@@ -53,14 +53,19 @@ class CalendarViewController: UIViewController  {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("calendarVC viewWillAppear")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("calendarVC viewDidAppear")
         showCalendar()
     }
     
+    // 한달에 보름달이 두번 뜨고 두번째 뜨는 달이 블루문이다. 이거 표시하자
     fileprivate func showCalendar() {
         //기존에 추가 되어 있는 것은 삭제하여 초기화 한다. 년월 라벨(11), 다음달(12), 이전달(13) 제외한다.
-        contentView.subviews
-            .filter { $0.tag == 0 }
-            .forEach { $0.removeFromSuperview() }
+        contentView.subviews.filter { $0.tag == 0 }.forEach { $0.removeFromSuperview() }
         // 제목 연월 표시
         yearMonthLabel.text = dateFormat.string(from: selectDate!)
         yearMonthLabel.frame = CGRect(x: contentView.bounds.size.width/2 - yearMonthLabel.bounds.size.width/2, y: 8, width: yearMonthLabel.bounds.size.width, height: yearMonthLabel.bounds.size.height)

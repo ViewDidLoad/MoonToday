@@ -95,7 +95,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GADBannerView
         // DatePicker 설정
         selectDatePicker.isHidden = true
         selectDatePicker.backgroundColor = UIColor(displayP3Red: 5/255, green: 28/255, blue: 46/255, alpha: 1.0)
-        selectDatePicker.setValue(UIColor.green, forKey: "textColor")
+        // DatePicker 텍스트 색상 및 오늘 색상 표시 없음
+        selectDatePicker.setValue(enableButtonColor, forKeyPath: "textColor")
+        selectDatePicker.setValue(false, forKey: "highlightsToday")
         selectDatePicker.date = selectDate
         selectDatePicker.calendar = Calendar.current
         selectDatePicker.layer.zPosition = 4
