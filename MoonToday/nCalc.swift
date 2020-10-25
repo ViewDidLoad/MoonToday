@@ -44,6 +44,10 @@ let disableTextColor = UIColor(displayP3Red: 119/255, green: 119/255, blue: 119/
 let disableButtonColor = UIColor(red: 215/255, green: 215/255, blue: 215/255, alpha: 1.0)
 let disableBorderColor = UIColor(red: 112/255, green: 112/255, blue: 112/255, alpha: 1.0)
 
+let disableMoonColor = UIColor(red: 228/255, green: 228/255, blue: 228/255, alpha: 1.0)
+let enableMoonColor = UIColor(red: 248/255, green: 248/255, blue: 248/255, alpha: 1.0)
+let blueMoonColor = UIColor(red: 78/255, green: 117/255, blue: 195/255, alpha: 1.0)
+
 struct nCalc {
     
     // 특성 및 상수
@@ -441,50 +445,89 @@ class NemesisMoon {
         // 태양 황경 보다 달 황경이 작을 때는 360을 더하자
         let mLongitude = moonLng < sunLng ? moonLng + 360.0 : moonLng
         let diff = Int(floor(fabs(sunLng - mLongitude)))
-        // 360도를 30로 나누면 12도이다.
-        //return Int(floor(Double((diff + 6) / 12)))
-        //*/
         switch diff {
-        case 0..<6: lunarDay = 30
-        case 6..<354: lunarDay = Int(floor(Double((diff + 6) / 12)))
-        /*/
-        case 6..<18: lunarDay = 1
-        case 18..<30: lunarDay = 2
-        case 30..<42: lunarDay = 3
-        case 42..<54: lunarDay = 4
-        case 54..<66: lunarDay = 5
-        case 66..<78: lunarDay = 6
-        case 78..<90: lunarDay = 7
-        case 90..<102: lunarDay = 8
-        case 102..<114: lunarDay = 9
-        case 114..<126: lunarDay = 10
-        case 126..<138: lunarDay = 11
-        case 138..<150: lunarDay = 12
-        case 150..<162: lunarDay = 13
-        case 162..<174: lunarDay = 14
-        case 174..<186: lunarDay = 15
-        case 186..<198: lunarDay = 16
-        case 198..<210: lunarDay = 17
-        case 210..<222: lunarDay = 18
-        case 222..<234: lunarDay = 19
-        case 234..<246: lunarDay = 20
-        case 246..<258: lunarDay = 21
-        case 258..<270: lunarDay = 22
-        case 270..<282: lunarDay = 23
-        case 282..<294: lunarDay = 24
-        case 294..<306: lunarDay = 25
-        case 306..<318: lunarDay = 26
-        case 318..<330: lunarDay = 27
-        case 330..<342: lunarDay = 28
-        case 342..<354: lunarDay = 29
-        // */
-        case 354...360: lunarDay = 30
-        default: lunarDay = 0
+            case 0..<6: lunarDay = 30
+            case 6..<354: lunarDay = Int(floor(Double((diff + 6) / 12)))
+            case 354...360: lunarDay = 30
+            default: lunarDay = 0
         }
         let new_day = Int(floor(Double((diff + 6) / 12)))
         print("longitudeToLunarDay -> diff: \(diff), lunarDay: \(lunarDay), new_day: \(new_day)")
         return lunarDay
         // */
     }
+    
+    func isFullMoon(date: Date) -> Bool {
+        var isFull = false
+        let sunLng_min = julianToSunLongitude(julian: date.start.julian)
+        let moonLng_min = julianToMoonLongitude(julian: date.start.julian)
+        // 태양 황경과 달의 황경이 작을 때는 360을 더하고 두개의 차이를 구한다.
+        let mLongitude_min = moonLng_min < sunLng_min ? moonLng_min + 360.0 : moonLng_min
+        let diff_min = fabs(sunLng_min - mLongitude_min)
+        
+        let sunLng_max = julianToSunLongitude(julian: date.end.julian)
+        let moonLng_max = julianToMoonLongitude(julian: date.end.julian)
+        // 태양 황경과 달의 황경이 작을 때는 360을 더하고 두개의 차이를 구한다.
+        let mLongitude_max = moonLng_max < sunLng_max ? moonLng_max + 360.0 : moonLng_max
+        let diff_max = fabs(sunLng_max - mLongitude_max)
+        print("isFullMoon diff \(diff_min) ~ \(diff_max)")
+        if diff_min <= 180 && diff_max >= 180 {
+            isFull = true
+        }
+        return isFull
+    }
 }
 
+extension Date {
+    var year: Int { return Calendar.current.component(.year, from: self) }
+    var month: Int { return Calendar.current.component(.month, from: self) }
+    var day: Int { return Calendar.current.component(.day, from: self) }
+    var hour: Int { return Calendar.current.component(.hour, from: self) }
+    var minute: Int { return Calendar.current.component(.minute, from: self) }
+    var second: Int { return Calendar.current.component(.second, from: self) }
+    var monthCount: Int { return Calendar.current.range(of: .day, in: .month, for: self)?.count ?? 0 }
+    // 이거 희안하게 잘 안먹네, 그레고리력으로 설정하면 되는데 이게 문제인가봐
+    //var weekday: Int { return Calendar.current.component(.weekday, from: self) }
+    
+    var julian: Double { return 2440587.5 + self.timeIntervalSince1970 / 86400 } // JD_JAN_1_1970_0000GMT = 2440587.5
+    
+    var start: Date {
+        // 00:00:00
+        let unitFlags = Set<Calendar.Component>([.year, .month, .day, .hour, .minute, .second])
+        var components = Calendar.current.dateComponents(unitFlags, from: self)
+        components.hour = 0
+        components.minute = 0
+        components.second = 0
+        return Calendar.current.date(from: components) ?? Date()
+    }
+    
+    var end: Date {
+        // 23:59:59
+        let unitFlags = Set<Calendar.Component>([.year, .month, .day, .hour, .minute, .second])
+        var components = Calendar.current.dateComponents(unitFlags, from: self)
+        components.hour = 23
+        components.minute = 59
+        components.second = 59
+        return Calendar.current.date(from: components) ?? Date()
+    }
+    
+    // 년,월,일 입력 값으로 날짜 설정
+    static func from(year:Int, month:Int, day:Int) -> Date {
+        var components = DateComponents()
+        components.year = year
+        components.month = month
+        components.day = day
+        return Calendar.current.date(from: components) ?? Date()
+    }
+    // 년,월,일,시,분,초 입력 값으로 날짜 설정
+    static func fromDetail(year:Int, month:Int, day:Int, hour:Int, minute:Int, second:Int) -> Date {
+        var components = DateComponents()
+        components.year = year
+        components.month = month
+        components.day = day
+        components.hour = hour
+        components.minute = minute
+        components.second = second
+        return Calendar.current.date(from: components) ?? Date()
+    }
+}

@@ -105,6 +105,7 @@ class CalendarViewController: UIViewController  {
         let weekCount = ceil(CGFloat(weekDay + dayCount - 1) / 7)
         let viewHeight:CGFloat = (contentView.frame.size.height - (start_y + labelHeight + delta + delta)) / weekCount
         //print("viewHeight -> \(viewHeight)")
+        var isFullCount = 0
         // 날짜 표시 변수 초기화
         var day = 1
         for i in 0..<Int(weekCount) {
@@ -118,21 +119,33 @@ class CalendarViewController: UIViewController  {
                     let dayView = UIView(frame: viewFrame)
                     // 배경 색상
                     dayView.backgroundColor = UIColor.clear
-                    if todayDay == day {
-                        let todayImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: viewHeight))
-                        todayImageView.image = UIImage(named: "today")
-                        dayView.addSubview(todayImageView)
-                    }
                     // moon image
                     dateComp.day = day
                     let moonDate = Calendar.current.date(from: dateComp)!
-                    //let phase = nCalc.moonPhase(date: moonDate!).phase
-                    //let lunarDay = nCalc.phaseTolunarday(phase: phase)
                     let nMoon = NemesisMoon()
                     let julian = nMoon.solarToJulian(date: moonDate)
                     let sunLng = nMoon.julianToSunLongitude(julian: julian)
                     let moonLng = nMoon.julianToMoonLongitude(julian: julian)
                     let lunar = nMoon.longitudeToLunarDay(sunLng: sunLng, moonLng: moonLng)
+                    let isFull = nMoon.isFullMoon(date: moonDate)
+                    // 보름달 표시
+                    if isFull {
+                        isFullCount += 1
+                        dayView.layer.cornerRadius = 5.0
+                        dayView.layer.borderWidth = 1.0
+                        if isFullCount < 2 {
+                            dayView.layer.borderColor = enableMoonColor.cgColor
+                        } else {
+                            // blue moon
+                            dayView.layer.borderColor = blueMoonColor.cgColor
+                        }
+                    }
+                    // 오늘 날짜 표시
+                    if moonDate.start == Date().start {
+                        dayView.layer.cornerRadius = 5.0
+                        dayView.layer.borderWidth = 1.0
+                        dayView.layer.borderColor = enableButtonColor.cgColor
+                    }
                     let lunarDay = String(format: "%02d", lunar)
                     let moonImage = UIImage(named: "s_moon_\(lunarDay)")
                     let moonDelta = delta / 2
