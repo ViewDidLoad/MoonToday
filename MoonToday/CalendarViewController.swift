@@ -128,6 +128,13 @@ class CalendarViewController: UIViewController  {
                     let moonLng = nMoon.julianToMoonLongitude(julian: julian)
                     let lunar = nMoon.longitudeToLunarDay(sunLng: sunLng, moonLng: moonLng)
                     let isFull = nMoon.isFullMoon(date: moonDate)
+                    let lunarDay = String(format: "%02d", lunar)
+                    let moonImage = UIImage(named: "s_moon_\(lunarDay)")
+                    let moonDelta = delta / 2
+                    let imageFrame = CGRect(x: moonDelta, y: delta + moonDelta, width: width - delta, height: width - delta)
+                    let imageView = UIImageView(frame: imageFrame)
+                    imageView.image = moonImage
+                    dayView.addSubview(imageView)
                     // 보름달 표시
                     if isFull {
                         isFullCount += 1
@@ -139,6 +146,12 @@ class CalendarViewController: UIViewController  {
                             // blue moon
                             dayView.layer.borderColor = blueMoonColor.cgColor
                         }
+                        // 보름달일 경우 -> 숨쉬는 달
+                        UIView.animate(withDuration: 1.5, delay: 0, options: [.repeat, .autoreverse]) {
+                            imageView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+                        } completion: { (finished) in
+                            imageView.transform = CGAffineTransform.identity
+                        }
                     }
                     // 오늘 날짜 표시
                     if moonDate.start == Date().start {
@@ -146,13 +159,6 @@ class CalendarViewController: UIViewController  {
                         dayView.layer.borderWidth = 1.0
                         dayView.layer.borderColor = enableButtonColor.cgColor
                     }
-                    let lunarDay = String(format: "%02d", lunar)
-                    let moonImage = UIImage(named: "s_moon_\(lunarDay)")
-                    let moonDelta = delta / 2
-                    let imageFrame = CGRect(x: moonDelta, y: delta + moonDelta, width: width - delta, height: width - delta)
-                    let imageView = UIImageView(frame: imageFrame)
-                    imageView.image = moonImage
-                    dayView.addSubview(imageView)
                     // day , 높이 신경 안써도 됨, 5개 일때는 104 - 53 - 18 남고 6개일 때 83 - 53 - 18 이어서 남는다.
                     let dayLabelFrameY = delta + imageFrame.size.height + delta
                     let dayLabelFrame = CGRect(x: 0, y: dayLabelFrameY, width: width, height: labelHeight)
